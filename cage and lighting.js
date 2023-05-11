@@ -5,6 +5,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 			import { MTLLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/MTLLoader.js'
 			import {FBXLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/FBXLoader.js';
 			import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/GLTFLoader.js';
+      import {GUI} from ''
 
 
             // Create the materials
@@ -18,7 +19,26 @@ var materials = [
   // Create the cages and spot lights and add them to the scene
   var cages = [];
   var spotLights = [];
-  var smallBoxes = [];
+  var smallBoxes = [
+    new THREE.Vector3(6,1, 7),
+    new THREE.Vector3(-6, 1, 15.5),
+    new THREE.Vector3(6, 1, 24),
+    new THREE.Vector3(-6, 1, 32.5)
+  ];
+  for (var i = 0; i < positions.length; i++) {
+    var geometry = new THREE.BoxGeometry(10, 2, 3);
+    var smallbox = new THREE.Mesh(geometry, materials[i]);
+    smallBox.position.copy(smallBoxPosition);
+    scene.add(smallbox);
+    smallBox.push(smallbox);
+
+    // Create the spot light for the small box
+  var smallBoxSpotLight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
+  smallBoxSpotLight.position.set(smallBoxPosition.x, smallBoxPosition.y + 5, smallBoxPosition.z);
+  smallBoxSpotLight.target = smallBox;
+  scene.add(smallBoxSpotLight);
+  spotLights.push(smallBoxSpotLight);
+  }
   var positions = [
     new THREE.Vector3(12.5, 2.5, 7),
     new THREE.Vector3(-12.5, 2.5, 15.5),
@@ -62,19 +82,14 @@ for (var i = 0; i < spotLightPositions.length; i++) {
 }
 
   // Create the small box
-  var smallBoxGeometry = new THREE.BoxGeometry(10, 2, 3);
-  var smallBox = new THREE.Mesh(smallBoxGeometry, materials[i]);
-  var smallBoxPosition = new THREE.Vector3(positions[i].x + (i%2===0 ? 6 : -6), 1, positions[i].z);
-  smallBox.position.copy(smallBoxPosition);
-  scene.add(smallBox);
-  smallBoxes.push(smallBox);
+  //var smallBoxGeometry = new THREE.BoxGeometry(10, 2, 3);
+  //var smallBox = new THREE.Mesh(smallBoxGeometry, materials[i]);
+  //var smallBoxPosition = new THREE.Vector3(6,1,7);
+  //smallBox.position.copy(smallBoxPosition);
+  //scene.add(smallBox);
+  //smallBoxes.push(smallBox);
 
-  // Create the spot light for the small box
-  var smallBoxSpotLight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
-  smallBoxSpotLight.position.set(smallBoxPosition.x, smallBoxPosition.y + 5, smallBoxPosition.z);
-  smallBoxSpotLight.target = smallBox;
-  scene.add(smallBoxSpotLight);
-  spotLights.push(smallBoxSpotLight);
+  
   
   // GUI Controls
  // var guiControls = new function () {
