@@ -20,17 +20,28 @@
     }
   </style>
 
+<script type="importmap">
+  {
+    "imports": {
+      "three": "../build/three.module.js",
+      "three/addons/": "./jsm/"
+    }
+  }
+</script>
+
 <script type="module">
   // Create the scene variable in the global scope
   var scene = new THREE.Scene();
   
   // Pass the scene variable to the imported files
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
+  import * as THREE from 'three';
   import { initializeStage } from './stage.js';
-  import { addModels } from './model.js';
+//  import { addModels } from './model.js';
+  import {initializeCageLighting} from './cage and lighting.js';
 
   initializeStage(scene);
-  addModels(scene);
+  //addModels(scene);
+  initializeCageLighting(scene);
 
 </script>
 </head>

@@ -1,5 +1,6 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
-			
+import * as THREE from 'three';
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
+
 
 //create the scene
 //var scene = new THREE.Scene( );
@@ -13,10 +14,18 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 //add the renderer to the current document
 document.body.appendChild(renderer.domElement );
 
+
 var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),5);
 scene.add(ambientlight);
 
+const smallbox01spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
+smallbox01spotlight.position.set(6,10, 7);
+smallbox01spotlight.target.position.set(6,0, 7);
+scene.add(smallbox01spotlight);
+scene.add(smallbox01spotlight.target);
 
+const smallbox01spotlightHelper = new THREE.SpotLightHelper(smallbox01spotlight);
+scene.add(smallbox01spotlightHelper);
 
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,
@@ -29,6 +38,8 @@ scene.add(camera);
 camera.position.z = -45; 
 camera.position.y = 1;
 camera.position.x = -1;
+
+var controls = new OrbitControls( camera, renderer.domElement );
 
 const input = {
     up:false,
@@ -145,7 +156,7 @@ leftWall5.position.z = +5.3;
 leftWall5.position.y = 4.5;
 
 let wallGroup = new THREE.Group(); // create a group to hold the walls
-scene.add(wallGroup); // add the group to the scene, then any child added to the group will display to the scene too
+//scene.add(wallGroup); // add the group to the scene, then any child added to the group will display to the scene too
 
 wallGroup.add(frontWall1, rightWall1, leftWall1, 
 			rightwall2,leftWall2, 
@@ -167,7 +178,7 @@ function update(){
   const delta = clock.getDelta();
   let facing = new THREE.Vector3();
   camera.getWorldDirection(facing);
-  
+  controls.update();
 
   if (input.up){
     var raycaster = new THREE.Raycaster(camera.position, facing);
