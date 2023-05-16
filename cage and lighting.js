@@ -49,26 +49,26 @@ var materials = [
   ];
   //smallbox 01
     const smallbox01 = new THREE.BoxGeometry(3, 2.5, 10);
-    const smallbox01material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const smallbox01material = new THREE.MeshPhysicalMaterial();
     const smallbox01mesh = new THREE.Mesh(smallbox01, smallbox01material );
     smallbox01mesh.position.set(6,1.25, 7);
     scene.add(smallbox01mesh);
 //smallbox02
     const smallbox02 = new THREE.BoxGeometry(3, 2.5, 10);
-    const smallbox02material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const smallbox02material = new THREE.MeshPhysicalMaterial();
     const smallbox02mesh = new THREE.Mesh(smallbox02, smallbox02material );
     smallbox02mesh.position.set(-6, 1, 15.5);
     scene.add(smallbox02mesh);
 
 //smallbox03
 const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
-    const smallbox03material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    const smallbox03material = new THREE.MeshPhysicalMaterial();
     const smallbox03mesh = new THREE.Mesh(smallbox03, smallbox03material );
     smallbox03mesh.position.set(6, 1.25, 24);
     scene.add(smallbox03mesh);
     //smallbox04
     const smallbox04 = new THREE.BoxGeometry(3, 2.5, 10);
-    const smallbox04material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const smallbox04material = new THREE.MeshPhysicalMaterial();
     const smallbox04mesh = new THREE.Mesh(smallbox04, smallbox04material );
     smallbox04mesh.position.set(-6, 1.25, 32.5);
     scene.add(smallbox04mesh);
@@ -83,7 +83,7 @@ scene.add(smallbox01spotlightHelper);
 
 //smallbox02 lighting
 const smallbox02spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
-smallbox01spotlight.position.set(-6, 1, 15.5);
+smallbox01spotlight.position.set(-6, 10, 15.5);
 scene.add(smallbox02spotlight);
 
 const smallbox02spotlightHelper = new THREE.SpotLightHelper(smallbox02spotlight);
@@ -91,7 +91,7 @@ scene.add(smallbox02spotlightHelper);
 
 //smallbox03 lighting
 const smallbox03spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
-smallbox03spotlight.position.set(6, 1, 24);
+smallbox03spotlight.position.set(6, 10, 24);
 scene.add(smallbox03spotlight);
 
 const smallbox03spotlightHelper = new THREE.SpotLightHelper(smallbox03spotlight);
@@ -99,7 +99,7 @@ scene.add(smallbox03spotlightHelper);
 
 //smallbox04 lighting
 const smallbox04spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
-smallbox04spotlight.position.set(-6, 1, 32.5);
+smallbox04spotlight.position.set(-6, 10, 32.5);
 scene.add(smallbox04spotlight);
 
 const smallbox04spotlightHelper = new THREE.SpotLightHelper(smallbox04spotlight);
@@ -117,7 +117,8 @@ scene.add(smallbox04spotlightHelper);
   ];
   for (var i = 0; i < positions.length; i++) {
     var geometry = new THREE.BoxGeometry(10, 5, 10);
-    var cage = new THREE.Mesh(geometry, materials[i]);
+    const boxmaterial = new THREE.MeshPhysicalMaterial();
+    var cage = new THREE.Mesh(geometry, boxmaterial);
     cage.position.copy(positions[i]);
     scene.add(cage);
     cages.push(cage);
@@ -133,11 +134,11 @@ scene.add(smallbox04spotlightHelper);
 var spotLights = [];
 var spotLightColors = [0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff];
 var spotLightPositions = [
-  new THREE.Vector3(0, 15, 6.5),
-  new THREE.Vector3(0, 15, 13),
-  new THREE.Vector3(0, 15, 19.5),
-  new THREE.Vector3(0, 15, 26),
-  new THREE.Vector3(0, 15, 32.5)
+  new THREE.Vector3(0, 10, 6.5),
+  
+  new THREE.Vector3(0, 10, 19.5),
+  
+  new THREE.Vector3(0, 10, 32.5)
 ];
 for (var i = 0; i < spotLightPositions.length; i++) {
   var spotLight = new THREE.SpotLight(spotLightColors[i]);
@@ -210,7 +211,7 @@ for (var i = 0; i < spotLightPositions.length; i++) {
 
 // Rock lights
 const light01 = new THREE.SpotLight()
-light01.position.set(12.5, 15, 7)
+light01.position.set(12.5, 10, 7)
 // for shadow
 light01.castShadow = true
 light01.shadow.mapSize.width = 1024
@@ -242,7 +243,7 @@ spotLightFolder01.open()
 
 // bronse lights
 const light02 = new THREE.SpotLight()
-light02.position.set(-12.5, 2.5, 15.5)
+light02.position.set(-12.5, 10, 15.5)
 // for bronse shadow
 light02.castShadow = true
 light02.shadow.mapSize.width = 1024
@@ -274,7 +275,7 @@ spotLightFolder02.open()
 
 // iron lights
 const light03 = new THREE.SpotLight()
-light03.position.set(12.5, 2.5, 24)
+light03.position.set(12.5, 10, 24)
 // for  iron shadow
 light03.castShadow = true
 light03.shadow.mapSize.width = 1024
@@ -306,7 +307,7 @@ spotLightFolder03.open()
 
 // morden lights
 const light04 = new THREE.SpotLight()
-light04.position.set(-12.5, 2.5, 32.5)
+light04.position.set(-12.5, 10, 32.5)
 // for morden shadow
 light04.castShadow = true
 light04.shadow.mapSize.width = 1024
