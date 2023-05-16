@@ -16,16 +16,9 @@ document.body.appendChild(renderer.domElement );
 
 
 var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),5);
-scene.add(ambientlight);
+//scene.add(ambientlight);
 
-const smallbox01spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
-smallbox01spotlight.position.set(6,10, 7);
-smallbox01spotlight.target.position.set(6,0, 7);
-scene.add(smallbox01spotlight);
-scene.add(smallbox01spotlight.target);
 
-const smallbox01spotlightHelper = new THREE.SpotLightHelper(smallbox01spotlight);
-scene.add(smallbox01spotlightHelper);
 
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,
