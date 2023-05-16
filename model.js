@@ -1,35 +1,18 @@
 
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
 
-			import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
             import { OBJLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/OBJLoader.js'
 			import { MTLLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/MTLLoader.js'
-			import {FBXLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/FBXLoader.js';
 			import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/GLTFLoader.js';
             //import {GUI} from './build/gui/lil-gui.module.min.js';
 	
-	var scene = new THREE.Scene();
+	export function addModels(scene) {
 
     //create the webgl renderer
-    var renderer = new THREE.WebGLRenderer( );
-
-    renderer.setSize(window.innerWidth,window.innerHeight);
-
-    //add the renderer to the current document
-    document.body.appendChild(renderer.domElement);
-
-    var ratio = window.innerWidth/window.innerHeight;
-
-    //create the perspective camera
-    //for parameters see https://threejs.org/docs/#api/cameras/PerspectiveCamera
-    var camera = new THREE.PerspectiveCamera(45,ratio,0.1,1000);
-    camera.position.set(5,2,-20);
-
-    var controls = new OrbitControls( camera, renderer.domElement );
 	
-	light();
+	
 
-	function light() {
+	/*function light() {
 
 		var spotlight = new THREE.SpotLight();
 		//spotlight.color = new THREE.Color(0xfdd8ff);
@@ -40,14 +23,14 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 		//spotlight.lightcolor.set = lightcolor;
 
 		
-		scene.add(spotlight);
+		//scene.add(spotlight);
 
 		/*var dirlight = new THREE.DirectionalLight(0xfdd8ff);
 		dirlight.position.set(1);
 		//dirlight.castShadow = true;
 		dirlight.intensity = 3;
 		scene.add(dirlight);
-		*/
+		
 		const light = new THREE.HemisphereLight();
 		light.color = new THREE.Color(0x7ee6fb);
 		light.groundColor = new THREE.Color(0xfafebe);
@@ -66,7 +49,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 		//pointlight.castShadow = true;
 		pointlight.intensity = 2;
 		scene.add(pointlight);
-	}
+	}*/
 
 	const mtlLoader = new MTLLoader();
 	const gltfLoader = new GLTFLoader();
@@ -193,36 +176,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 					scene.add(bronze_shield.scene);
 				})
 
-				
-
-				renderer.render(scene, camera);
-
-				var MyUpdateLoop = function ( )
-				{
-			
-				  controls.update();
-				  //call the render with the scene and the camera
-				  renderer.render(scene,camera);
-				  //finally perform a recoursive call to update again
-				  //this must be called because the mouse change the camera position
-				  requestAnimationFrame(MyUpdateLoop);
-				};
-			
-				requestAnimationFrame(MyUpdateLoop);
-				var MyResize = function ( )
-				{
-					var width = window.innerWidth;
-					var height = window.innerHeight;
-					renderer.setSize(width,height);
-					camera.aspect = width/height;
-					camera.updateProjectionMatrix();
-					renderer.render(scene,camera);
-				};
-
-   //link the resize of the window to the update of the camera
-   window.addEventListener( 'resize', MyResize);
-
-
+}
 
 
 

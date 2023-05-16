@@ -20,14 +20,19 @@
     }
   </style>
 
+<script type="module">
+  // Create the scene variable in the global scope
+  var scene = new THREE.Scene();
   
-  <script type="module" src="cage and lighting.js"></script>
+  // Pass the scene variable to the imported files
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
+  import { initializeStage } from './stage.js';
+  import { addModels } from './model.js';
 
-  
-  
+  initializeStage(scene);
+  addModels(scene);
 
- 
-
+</script>
 </head>
 <body>
   
