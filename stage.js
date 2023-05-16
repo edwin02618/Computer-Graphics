@@ -16,7 +16,7 @@ document.body.appendChild(renderer.domElement );
 
 
 var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),5);
-//scene.add(ambientlight);
+scene.add(ambientlight);
 
 
 
@@ -149,9 +149,9 @@ leftWall5.position.z = +5.3;
 leftWall5.position.y = 4.5;
 
 let wallGroup = new THREE.Group(); // create a group to hold the walls
-//scene.add(wallGroup); // add the group to the scene, then any child added to the group will display to the scene too
+scene.add(wallGroup); // add the group to the scene, then any child added to the group will display to the scene too
 
-wallGroup.add(frontWall1, rightWall1, leftWall1, 
+wallGroup.add(frontWall1, rightWall1, //leftWall1, 
 			rightwall2,leftWall2, 
 			leftWall3, rightWall3,
 			leftWall4, rightWall4,

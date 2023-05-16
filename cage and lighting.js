@@ -34,7 +34,8 @@ var materials = [
     const smallbox01 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox01material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const smallbox01mesh = new THREE.Mesh(smallbox01, smallbox01material );
-    smallbox01mesh.position.set(6,0.75, 7);
+    smallbox01mesh.position.set(4.5,0.75, -42);
+    smallbox01mesh.rotation.y = + 0.3; 
     scene.add(smallbox01mesh);
 //smallbox02
     const smallbox02 = new THREE.BoxGeometry(3, 2.5, 10);
@@ -58,8 +59,8 @@ const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
 
 //smallbox01 lighting 
 const smallbox01spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox01spotlight.position.set(6,10, 7);
-smallbox01spotlight.target.position.set(6,0.75, 7);
+smallbox01spotlight.position.set(4.5,10, -42);
+smallbox01spotlight.target.position.set(4.5,0.75, -42);
 scene.add(smallbox01spotlight);
 scene.add(smallbox01spotlight.target);
 
@@ -96,6 +97,14 @@ scene.add(smallbox04spotlight.target);
 const smallbox04spotlightHelper = new THREE.SpotLightHelper(smallbox04spotlight);
 //scene.add(smallbox04spotlightHelper);
     
+//cage01
+
+const cage01 = new THREE.BoxGeometry(10, 5, 10);
+    const cage01material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
+    const cage01mesh = new THREE.Mesh(cage01, cage01material );
+    cage01mesh.position.set(10.7, 2, -44);
+    cage01mesh.rotation.y = + 0.3; 
+    scene.add(cage01mesh);
 
 
    
@@ -263,8 +272,8 @@ const halllight06spotlightHelper = new THREE.SpotLightHelper(halllight06spotligh
 
 // Rock lights
 const light01 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light01.position.set(12.5, 20, 7)
-light01.target.position.set(12.5, 4.5, 7)
+light01.position.set(10.7, 20, -44)
+light01.target.position.set(10.7, 4.5, -44)
 scene.add(light01.target);
 
 // for shadow
