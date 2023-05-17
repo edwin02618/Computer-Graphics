@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
-
+import backgroundfShader from './shader/backgroundfshader.glsl.js';
+import backgroundvShader from './shader/backgroundvshader.glsl.js';
 
 //create the scene
 //var scene = new THREE.Scene( );
@@ -15,7 +16,7 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 document.body.appendChild(renderer.domElement );
 
 
-var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),1);
+var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),0.2);
 scene.add(ambientlight);
 
 
@@ -41,6 +42,24 @@ const input = {
     riht: false,
   }
 
+  var uniforms = {
+    time: {value:0.0},
+    speed: {value : 6},
+    fadeAway:{value: 0.7},
+    resolution:{value: new THREE.Vector2(1, 1)},
+    uniformity:{value: 10},
+    mouse: {value: new THREE.Vector2(0.5,0.5)},
+    color:{value: new THREE.Color(0.8745098039215686, 0.5725490196078431, 0.058823529411764705)},
+   
+  }
+  
+  const backshaderMaterial = new THREE.ShaderMaterial({
+    uniforms :uniforms,
+    vertexShader :backgroundvShader,
+    fragmentShader: backgroundfShader,
+    side: THREE.DoubleSide
+  })
+
 const loader = new THREE.TextureLoader();
 
 const backgroundtexture = loader.load('img/background.jpg');
@@ -48,10 +67,14 @@ const backgroundtexture = loader.load('img/background.jpg');
 backgroundtexture.wrapS = THREE.RepeatWrapping;
 backgroundtexture.wrapT = THREE.RepeatWrapping;
 backgroundtexture.repeat = new THREE.Vector2(60,1)
-const backgroundGeometry = new THREE.SphereGeometry( 100, 64,32 );
+const backgroundGeometry = new THREE.SphereGeometry( 100, 32,32);
+backgroundGeometry.thetaLength = 1
 const backgroundmaterial = new THREE.MeshBasicMaterial( {map: backgroundtexture } );
-const backgroundsphere = new THREE.Mesh( backgroundGeometry, backgroundmaterial );
+const backgroundsphere = new THREE.Mesh( backgroundGeometry, backshaderMaterial );
 backgroundsphere.material.side = THREE.BackSide;
+backgroundsphere.rotation.y =  - Math.PI / 2 +0.05;
+backgroundsphere.rotation.x = -0.2
+backgroundsphere.position.z = -30
 scene.add( backgroundsphere );
 
 const floorTexture = loader.load( 'img/floor.png' );
@@ -114,7 +137,7 @@ leftWall2.position.z = -39;
 const leftWall3 = new THREE.Mesh(new THREE.BoxGeometry(38, 10, 1), wallMaterial );
 leftWall3.rotation.y = Math.PI / 2; 
 leftWall3.position.x = 25.1;
-leftWall3.position.z = -23;
+leftWall3.position.z = -22;
 leftWall3.position.y = 4.5;
 
 
@@ -128,7 +151,7 @@ rightWall3.position.z = -19.7;
 const leftWall4 = new THREE.Mesh(new THREE.BoxGeometry(16, 10, 1), wallMaterial );
 leftWall4.rotation.y = 0.2
 leftWall4.position.x = 17.9;
-leftWall4.position.z = -2;
+leftWall4.position.z = -1.5;
 leftWall4.position.y = 4.5;
 
 const rightWall4 = new THREE.Mesh(new THREE.BoxGeometry(18, 10, 1), wallMaterial );
@@ -143,10 +166,10 @@ rightWall5.position.x = 0;
 rightWall5.position.z = +7;
 rightWall5.position.y = 4.5;
 
-const leftWall5 = new THREE.Mesh(new THREE.BoxGeometry(11, 10, 1), wallMaterial );
+const leftWall5 = new THREE.Mesh(new THREE.BoxGeometry(13.5, 10, 1), wallMaterial );
 leftWall5.rotation.y = Math.PI / 2 
-leftWall5.position.x = 10.9;
-leftWall5.position.z = +5.3;
+leftWall5.position.x = 12;
+leftWall5.position.z = +17.8;
 leftWall5.position.y = 4.5;
 
 let wallGroup = new THREE.Group(); // create a group to hold the walls
@@ -156,7 +179,7 @@ wallGroup.add(frontWall1, rightWall1, //leftWall1,
 			rightwall2,leftWall2, 
 			leftWall3, //rightWall3,
 			leftWall4, rightWall4,
-			rightWall5,/*leftWall5*/ );
+			rightWall5,leftWall5 );
 
 //create collidableList and assign all the children in wall group
 const collidableMeshList = wallGroup.children;
@@ -207,7 +230,7 @@ function update(){
 	camera.rotation.y -=rotationSpeed * delta;
   }
 
-
+  uniforms.time.value = clock.getElapsedTime()
   requestAnimationFrame(update)
   renderer.render(scene, camera);
 }
