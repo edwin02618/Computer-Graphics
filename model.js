@@ -105,14 +105,6 @@
 				})
 				
 
-				/*const fbxLoader = new FBXLoader();
-				fbxLoader.load('./models/iron_spear/spear.fbx', (iron_spear) => {
-					iron_spear.position.set( 1, 0.5, 1);
-					iron_spear.scale.set( 0.005, 0.005, 0.005 );
-					scene.add(iron_spear);
-					MyUpdateLoop();
-				})*/
-
 				gltfLoader.load('./models/iron_spear/scene.gltf',(iron_spear) => {
 					iron_spear.scene.rotation.x = Math.PI / -2;
 					iron_spear.scene.scale.set(0.1,0.1,0.1);

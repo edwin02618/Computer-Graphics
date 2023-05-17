@@ -15,7 +15,7 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 document.body.appendChild(renderer.domElement );
 
 
-var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),5);
+var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),1);
 scene.add(ambientlight);
 
 
@@ -75,11 +75,12 @@ wallTexture.wrapT = THREE.RepeatWrapping;
 wallTexture.repeat = new THREE.Vector2(7,3)
 // Front Wall
 const wallMaterial = new THREE.MeshLambertMaterial({ map: wallTexture })
-const frontWall1 = new THREE.Mesh(new THREE.BoxGeometry(20, 10, 1), wallMaterial );
+const frontWall1 = new THREE.Mesh(new THREE.BoxGeometry(25, 10, 1), wallMaterial );
  // Lambert material is for non-shiny surfaces 
 
 frontWall1.position.z = -50; 
 frontWall1.position.y = 4.5;
+frontWall1.position.x = 1.4;
 
 // right Wall
 const rightWall1 = new THREE.Mesh(new THREE.BoxGeometry(40, 10, 1), wallMaterial );
@@ -97,23 +98,23 @@ leftWall1.position.x = 4.5;
 leftWall1.position.y = 4.5;
 leftWall1.position.z = -42;
 
-const rightwall2 = new THREE.Mesh(new THREE.BoxGeometry(18, 10, 1), wallMaterial );
-rightwall2.rotation.y = Math.PI / 2+ 5.1; 
-rightwall2.position.z = -24.6;
+const rightwall2 = new THREE.Mesh(new THREE.BoxGeometry(16, 10, 1), wallMaterial );
+rightwall2.rotation.y = +0.2; 
+rightwall2.position.z = -23;
 rightwall2.position.y = 4.5;
-rightwall2.position.x = 9.3;
+rightwall2.position.x = 8.5;
 
 const leftWall2 = new THREE.Mesh(new THREE.BoxGeometry(20, 10, 1), wallMaterial );
 
-leftWall2.rotation.y = Math.PI / 2+ 5.1; 
+leftWall2.rotation.y = +0.3; 
 leftWall2.position.x = 16.1; 
 leftWall2.position.y = 4.5;
-leftWall2.position.z = -37.52;
+leftWall2.position.z = -39;
 
-const leftWall3 = new THREE.Mesh(new THREE.BoxGeometry(35, 10, 1), wallMaterial );
+const leftWall3 = new THREE.Mesh(new THREE.BoxGeometry(38, 10, 1), wallMaterial );
 leftWall3.rotation.y = Math.PI / 2; 
 leftWall3.position.x = 25.1;
-leftWall3.position.z = -23.6;
+leftWall3.position.z = -23;
 leftWall3.position.y = 4.5;
 
 
@@ -125,21 +126,21 @@ rightWall3.position.y = 4.5;
 rightWall3.position.z = -19.7;
 
 const leftWall4 = new THREE.Mesh(new THREE.BoxGeometry(16, 10, 1), wallMaterial );
-leftWall4.rotation.y = Math.PI / 2 -20
+leftWall4.rotation.y = 0.2
 leftWall4.position.x = 17.9;
-leftWall4.position.z = -3;
+leftWall4.position.z = -2;
 leftWall4.position.y = 4.5;
 
 const rightWall4 = new THREE.Mesh(new THREE.BoxGeometry(18, 10, 1), wallMaterial );
-rightWall4.rotation.y = Math.PI / 2 -20
+rightWall4.rotation.y = 0.2
 rightWall4.position.x = 9.4;
-rightWall4.position.z = -8;
+rightWall4.position.z = -10.8;
 rightWall4.position.y = 4.5;
 
-const rightWall5 = new THREE.Mesh(new THREE.BoxGeometry(15, 10, 1), wallMaterial );
+const rightWall5 = new THREE.Mesh(new THREE.BoxGeometry(35, 10, 1), wallMaterial );
 rightWall5.rotation.y = Math.PI / 2 
-rightWall5.position.x = 1.5;
-rightWall5.position.z = +3;
+rightWall5.position.x = 0;
+rightWall5.position.z = +7;
 rightWall5.position.y = 4.5;
 
 const leftWall5 = new THREE.Mesh(new THREE.BoxGeometry(11, 10, 1), wallMaterial );
@@ -171,7 +172,7 @@ function update(){
   const delta = clock.getDelta();
   let facing = new THREE.Vector3();
   camera.getWorldDirection(facing);
-  controls.update();
+  //controls.update();
 
   if (input.up){
     var raycaster = new THREE.Raycaster(camera.position, facing);
