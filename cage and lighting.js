@@ -41,7 +41,8 @@ var materials = [
     const smallbox02 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox02material = new THREE.MeshPhysicalMaterial();
     const smallbox02mesh = new THREE.Mesh(smallbox02, smallbox02material );
-    smallbox02mesh.position.set(-6, 0.75, 15.5);
+    smallbox02mesh.position.set(17.32, 0.75, -18.7);
+    smallbox02mesh.rotation.y = +0.2; 
     scene.add(smallbox02mesh);
 
 //smallbox03
@@ -69,8 +70,8 @@ const smallbox01spotlightHelper = new THREE.SpotLightHelper(smallbox01spotlight)
 
 //smallbox02 lighting
 const smallbox02spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox02spotlight.position.set(-6, 10, 15.5);
-smallbox02spotlight.target.position.set(-6, 0.75, 15.5);
+smallbox02spotlight.position.set(17.32, 10, -18.7);
+smallbox02spotlight.target.position.set(17.32, 0.75, -18.7);
 scene.add(smallbox02spotlight);
 scene.add(smallbox02spotlight.target);
 
@@ -105,6 +106,14 @@ const cage01 = new THREE.BoxGeometry(10, 5, 10);
     cage01mesh.position.set(10.7, 2, -44);
     cage01mesh.rotation.y = + 0.3; 
     scene.add(cage01mesh);
+
+//cage02
+const cage02 = new THREE.BoxGeometry(10, 5, 10);
+    const cage02material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
+    const cage02mesh = new THREE.Mesh(cage02, cage02material );
+    cage02mesh.position.set(11.32, 2, -17.5);
+    cage02mesh.rotation.y = +0.2; 
+    scene.add(cage02mesh);
 
 
    
@@ -305,10 +314,10 @@ spotLightFolder01.add(light01.position, 'y', -50, 50, 1)
 spotLightFolder01.add(light01.position, 'z', -50, 50, 1)
 spotLightFolder01.open()
 
-// bronse lights
+// bronze lights
 const light02 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light02.position.set(-12.5, 20, 15.5)
-light02.target.position.set(-12.5, 4.5, 15.5)
+light02.position.set(11.32, 20, -17.5)
+light02.target.position.set(11.32,4.5, -17.5)
 scene.add(light02.target);
 // for bronse shadow
 light02.castShadow = true
@@ -319,7 +328,7 @@ light02.shadow.camera.far = 100
 scene.add(light02)
 const helper02 = new THREE.SpotLightHelper(light02)
 //scene.add(helper02)
-// bronse light controls
+// bronze light controls
 const lightColor02 = {
   color: light02.color.getHex()
 }

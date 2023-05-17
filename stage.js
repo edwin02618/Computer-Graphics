@@ -153,7 +153,7 @@ scene.add(wallGroup); // add the group to the scene, then any child added to the
 
 wallGroup.add(frontWall1, rightWall1, //leftWall1, 
 			rightwall2,leftWall2, 
-			leftWall3, rightWall3,
+			leftWall3, //rightWall3,
 			leftWall4, rightWall4,
 			rightWall5,leftWall5);
 
