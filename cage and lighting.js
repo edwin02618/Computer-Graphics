@@ -1,6 +1,4 @@
 import * as THREE from 'three';
-
-			import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
       import {GUI} from '//cdn.skypack.dev/three@0.131.1/examples/jsm/libs/dat.gui.module.js'
       
 export function initializeCageLighting(scene) {
@@ -61,8 +59,8 @@ const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
 
 //smallbox01 lighting 
 const smallbox01spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox01spotlight.position.set(4.5,10, -42);
-smallbox01spotlight.target.position.set(4.5,0.75, -42);
+smallbox01spotlight.position.set(7,10, -42.2);
+smallbox01spotlight.target.position.set(7,0.75, -42.2);
 scene.add(smallbox01spotlight);
 scene.add(smallbox01spotlight.target);
 
@@ -71,8 +69,8 @@ const smallbox01spotlightHelper = new THREE.SpotLightHelper(smallbox01spotlight)
 
 //smallbox02 lighting
 const smallbox02spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox02spotlight.position.set(17.32, 10, -18.7);
-smallbox02spotlight.target.position.set(17.32, 0.75, -18.7);
+smallbox02spotlight.position.set(15.2, 10, -18.3);
+smallbox02spotlight.target.position.set(15.2, 0.75, -18.3);
 scene.add(smallbox02spotlight);
 scene.add(smallbox02spotlight.target);
 
@@ -173,9 +171,9 @@ const cage03 = new THREE.BoxGeometry(10, 5, 10);
 //}
 
 //hallway light01
-const halllight01spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-halllight01spotlight.position.set(0, 10, 6.5);
-halllight01spotlight.target.position.set(0, -0.5, 6.5);
+const halllight01spotlight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI/5, 0.3);
+halllight01spotlight.position.set(5, 9, -31.5);
+halllight01spotlight.target.position.set(5, -0.5, -31.5);
 scene.add(halllight01spotlight);
 scene.add(halllight01spotlight.target);
 
@@ -183,9 +181,9 @@ const halllight01spotlightHelper = new THREE.SpotLightHelper(halllight01spotligh
 //scene.add(halllight01spotlightHelper);
 
 //hallway light02
-const halllight02spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-halllight02spotlight.position.set(0, 10, 13);
-halllight02spotlight.target.position.set(0, -0.5, 13);
+const halllight02spotlight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI/5, 0.3);
+halllight02spotlight.position.set(20, 9, -30.5);
+halllight02spotlight.target.position.set(20, -0.5, -30.5);
 scene.add(halllight02spotlight);
 scene.add(halllight02spotlight.target);
 
@@ -193,9 +191,9 @@ const halllight02spotlightHelper = new THREE.SpotLightHelper(halllight02spotligh
 //scene.add(halllight02spotlightHelper);
 
 //hallway light03
-const halllight03spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-halllight03spotlight.position.set(0, 10, 19.5);
-halllight03spotlight.target.position.set(0, -0.5, 19.5);
+const halllight03spotlight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI/5, 0.3);
+halllight03spotlight.position.set(20, 9, -9.5);
+halllight03spotlight.target.position.set(20, -0.5, -9.5);
 scene.add(halllight03spotlight);
 scene.add(halllight03spotlight.target);
 
@@ -203,9 +201,9 @@ const halllight03spotlightHelper = new THREE.SpotLightHelper(halllight03spotligh
 //scene.add(halllight03spotlightHelper);
 
 //hallway light04
-const halllight04spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-halllight04spotlight.position.set(0, 10, 26);
-halllight04spotlight.target.position.set(0, -0.5, 26);
+const halllight04spotlight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI/5, 0.3);
+halllight04spotlight.position.set(6, 9, -5);
+halllight04spotlight.target.position.set(6, -0.5, -5);
 scene.add(halllight04spotlight);
 scene.add(halllight04spotlight.target);
 
@@ -213,9 +211,9 @@ const halllight04spotlightHelper = new THREE.SpotLightHelper(halllight04spotligh
 //scene.add(halllight04spotlightHelper);
 
 //hallway light05
-const halllight05spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-halllight05spotlight.position.set(0, 10, 32.5);
-halllight05spotlight.target.position.set(0, -0.5, 32.5);
+const halllight05spotlight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI/5, 0.3);
+halllight05spotlight.position.set(5, 9, 12);
+halllight05spotlight.target.position.set(5, -0.5, 12);
 scene.add(halllight05spotlight);
 scene.add(halllight05spotlight.target);
 
@@ -291,8 +289,8 @@ const halllight06spotlightHelper = new THREE.SpotLightHelper(halllight06spotligh
 
 // Rock lights
 const light01 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light01.position.set(10.7, 20, -44)
-light01.target.position.set(10.7, 4.5, -44)
+light01.position.set(13, 20, -44)
+light01.target.position.set(13, 2, -44)
 scene.add(light01.target);
 
 // for shadow
@@ -326,8 +324,8 @@ spotLightFolder01.open()
 
 // bronze lights
 const light02 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light02.position.set(11.32, 20, -17.5)
-light02.target.position.set(11.32,4.5, -17.5)
+light02.position.set(9, 20, -17)
+light02.target.position.set(9, 2, -17)
 scene.add(light02.target);
 // for bronse shadow
 light02.castShadow = true
