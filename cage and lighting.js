@@ -34,14 +34,14 @@ var materials = [
     const smallbox01mesh = new THREE.Mesh(smallbox01, smallbox01material );
     smallbox01mesh.position.set(7,0.75, -42.2);
     smallbox01mesh.rotation.y = + 0.3; 
-    scene.add(smallbox01mesh);
+    //scene.add(smallbox01mesh);
 //smallbox02
     const smallbox02 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox02material = new THREE.MeshPhysicalMaterial();
     const smallbox02mesh = new THREE.Mesh(smallbox02, smallbox02material );
     smallbox02mesh.position.set(15.2, 0.75, -18.3);
     smallbox02mesh.rotation.y = +0.2; 
-    scene.add(smallbox02mesh);
+    //scene.add(smallbox02mesh);
 
 //smallbox03
 const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
@@ -49,14 +49,14 @@ const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox03mesh = new THREE.Mesh(smallbox03, smallbox03material );
     smallbox03mesh.position.set(10.9, 0.75, 6);
     
-    scene.add(smallbox03mesh);
+    //scene.add(smallbox03mesh);
     //smallbox04
     const smallbox04 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox04material = new THREE.MeshPhysicalMaterial();
     const smallbox04mesh = new THREE.Mesh(smallbox04, smallbox04material );
     smallbox04mesh.position.set(6, 0.75, 25);
     smallbox04mesh.rotation.y = Math.PI/2;
-    scene.add(smallbox04mesh);
+    //scene.add(smallbox04mesh);
 
 //smallbox01 lighting 
 const smallbox01spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.2);
@@ -105,7 +105,7 @@ const cage01 = new THREE.BoxGeometry(10, 5, 10);
     const cage01mesh = new THREE.Mesh(cage01, cage01material );
     cage01mesh.position.set(13, 2, -44);
     cage01mesh.rotation.y = + 0.3; 
-    scene.add(cage01mesh);
+    //scene.add(cage01mesh);
 
 //cage02
 const cage02 = new THREE.BoxGeometry(10, 5, 10);
@@ -113,24 +113,25 @@ const cage02 = new THREE.BoxGeometry(10, 5, 10);
     const cage02mesh = new THREE.Mesh(cage02, cage02material );
     cage02mesh.position.set(9, 2, -17);
     cage02mesh.rotation.y = +0.2; 
-    scene.add(cage02mesh);
+    //scene.add(cage02mesh);
 
     //cage03
 const cage03 = new THREE.BoxGeometry(10, 5, 10);
     const cage03material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const cage03mesh = new THREE.Mesh(cage03, cage03material );
     cage03mesh.position.set(17.4, 2, 6);
-    scene.add(cage03mesh);
+    //scene.add(cage03mesh);
 
     //cage04
 const cage04 = new THREE.BoxGeometry(10, 5, 10);
 const cage04material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
 const cage04mesh = new THREE.Mesh(cage04, cage04material );
 cage04mesh.position.set(6, 0.75, 31);
-scene.add(cage04mesh);
+//scene.add(cage04mesh);
 
 
-   
+wallGroup.add(cage01mesh, cage02mesh, cage03mesh, cage04mesh, smallbox01mesh, smallbox02mesh, smallbox03mesh, smallbox04mesh);
+
   
   //var positions = [
     //new THREE.Vector3(12.5, 2, 7),
@@ -453,3 +454,6 @@ if (guiElement) {
 }
 
       }
+      export const wallGroup = new THREE.Group();
+
+

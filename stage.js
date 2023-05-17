@@ -3,6 +3,7 @@ import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/j
 import backgroundfShader from './shader/backgroundfshader.glsl.js';
 import backgroundvShader from './shader/backgroundvshader.glsl.js';
 import {PointerLockControls} from './examples/jsm/controls/PointerLockControls.js';
+import { wallGroup } from './cage and lighting.js';
 
 //create the scene
 //var scene = new THREE.Scene( );
@@ -42,7 +43,9 @@ let moveForward = false;
 let moveBackward = false;
 let moveLeft = false;
 let moveRight = false;
-let canJump = false;
+let canJump = true;
+const jumpSpeed = 40;
+
 
 
 let prevTime = performance.now();
@@ -186,7 +189,7 @@ leftWall5.position.x = 12;
 leftWall5.position.z = +17.8;
 leftWall5.position.y = 4.5;
 
-let wallGroup = new THREE.Group(); // create a group to hold the walls
+//let wallGroup = new THREE.Group(); // create a group to hold the walls
 scene.add(wallGroup); // add the group to the scene, then any child added to the group will display to the scene too
 
 wallGroup.add(frontWall1, rightWall1, //leftWall1, 
@@ -249,9 +252,9 @@ function update(){
   }
 
   jumpraycaster.ray.origin.copy( controls.getObject().position );
-  jumpraycaster.ray.origin.y = camera.position.y + 10;
+  jumpraycaster.ray.origin.y = camera.position.y +5;
 
-    const jumpintersections = jumpraycaster.intersectObjects( objects, false);
+    const jumpintersections = jumpraycaster.intersectObjects( collidableMeshList,false);
 
     const onObject = jumpintersections.length > 0;
 
@@ -269,11 +272,9 @@ function update(){
     if ( moveForward || moveBackward ) velocity.z -= direction.z * 100.0 * delta;
     if ( moveLeft || moveRight ) velocity.x -= direction.x * 100.0 * delta;
 
-    if ( onObject === true ) {
-
-      velocity.y = Math.max( 0, velocity.y );
+    if (onObject === true) {
+      velocity.y = Math.max(0, velocity.y);
       canJump = true;
-
     }
 
     controls.moveRight( - velocity.x * delta );
@@ -281,13 +282,10 @@ function update(){
 
     controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
-    if ( controls.getObject().position.y < 3 ) {
-
+    if (controls.getObject().position.y < 3) {
       velocity.y = 0;
       controls.getObject().position.y = 3;
-
       canJump = true;
-
     }
 
   
@@ -361,7 +359,7 @@ const onKeyDown = function ( event ) {
       break;
 
     case 'Space':
-      if ( canJump === true ) velocity.y += 40;
+      if ( canJump === true ) velocity.y += jumpSpeed;
       canJump = false;
       break;
 
