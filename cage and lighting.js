@@ -439,6 +439,11 @@ spotLightFolder04.open()
 //renderer.shadowMap.enabled = true
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
+const guiElement = document.getElementById('your-gui-element-id');
+if (guiElement) {
+  console.log(guiElement.id); // Print the id of the GUI element
+} else {
+  console.log('GUI element not found');
+}
 
       }
