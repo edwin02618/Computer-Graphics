@@ -103,7 +103,7 @@ const smallbox04spotlightHelper = new THREE.SpotLightHelper(smallbox04spotlight)
 const cage01 = new THREE.BoxGeometry(10, 5, 10);
     const cage01material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const cage01mesh = new THREE.Mesh(cage01, cage01material );
-    cage01mesh.position.set(13, 2, -44);
+    cage01mesh.position.set(13, 0.75, -44);
     cage01mesh.rotation.y = + 0.3; 
     //scene.add(cage01mesh);
 
@@ -111,7 +111,7 @@ const cage01 = new THREE.BoxGeometry(10, 5, 10);
 const cage02 = new THREE.BoxGeometry(10, 5, 10);
     const cage02material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const cage02mesh = new THREE.Mesh(cage02, cage02material );
-    cage02mesh.position.set(9, 2, -17);
+    cage02mesh.position.set(9, 0.75, -17);
     cage02mesh.rotation.y = +0.2; 
     //scene.add(cage02mesh);
 
@@ -119,7 +119,7 @@ const cage02 = new THREE.BoxGeometry(10, 5, 10);
 const cage03 = new THREE.BoxGeometry(10, 5, 10);
     const cage03material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const cage03mesh = new THREE.Mesh(cage03, cage03material );
-    cage03mesh.position.set(17.4, 2, 6);
+    cage03mesh.position.set(17.4, 0.75, 6);
     //scene.add(cage03mesh);
 
     //cage04
