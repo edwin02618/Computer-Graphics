@@ -61,8 +61,8 @@ const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
 
 //smallbox01 lighting 
 const smallbox01spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox01spotlight.position.set(4.5,10, -42);
-smallbox01spotlight.target.position.set(4.5,0.75, -42);
+smallbox01spotlight.position.set(7,10, -42.2);
+smallbox01spotlight.target.position.set(7,0.75, -42.2);
 scene.add(smallbox01spotlight);
 scene.add(smallbox01spotlight.target);
 
@@ -71,8 +71,8 @@ const smallbox01spotlightHelper = new THREE.SpotLightHelper(smallbox01spotlight)
 
 //smallbox02 lighting
 const smallbox02spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox02spotlight.position.set(17.32, 10, -18.7);
-smallbox02spotlight.target.position.set(17.32, 0.75, -18.7);
+smallbox02spotlight.position.set(15.2, 10, -18.3);
+smallbox02spotlight.target.position.set(15.2, 0.75, -18.3);
 scene.add(smallbox02spotlight);
 scene.add(smallbox02spotlight.target);
 
@@ -291,8 +291,8 @@ const halllight06spotlightHelper = new THREE.SpotLightHelper(halllight06spotligh
 
 // Rock lights
 const light01 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light01.position.set(10.7, 20, -44)
-light01.target.position.set(10.7, 4.5, -44)
+light01.position.set(13, 20, -44)
+light01.target.position.set(13, 2, -44)
 scene.add(light01.target);
 
 // for shadow
@@ -326,8 +326,8 @@ spotLightFolder01.open()
 
 // bronze lights
 const light02 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light02.position.set(11.32, 20, -17.5)
-light02.target.position.set(11.32,4.5, -17.5)
+light02.position.set(9, 20, -17)
+light02.target.position.set(9, 2, -17)
 scene.add(light02.target);
 // for bronse shadow
 light02.castShadow = true

@@ -16,7 +16,7 @@ document.body.appendChild(renderer.domElement );
 
 
 var ambientlight = new THREE.AmbientLight(new THREE.Color(1,1,1),1);
-scene.add(ambientlight);
+//scene.add(ambientlight);
 
 
 
