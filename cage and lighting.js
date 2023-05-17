@@ -59,7 +59,7 @@ const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
     scene.add(smallbox04mesh);
 
 //smallbox01 lighting 
-const smallbox01spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
+const smallbox01spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.2);
 smallbox01spotlight.position.set(7,10, -42.2);
 smallbox01spotlight.target.position.set(7,0.75, -42.2);
 scene.add(smallbox01spotlight);
@@ -69,7 +69,7 @@ const smallbox01spotlightHelper = new THREE.SpotLightHelper(smallbox01spotlight)
 //scene.add(smallbox01spotlightHelper);
 
 //smallbox02 lighting
-const smallbox02spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
+const smallbox02spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.2);
 smallbox02spotlight.position.set(15.2, 10, -18.3);
 smallbox02spotlight.target.position.set(15.2, 0.75, -18.3);
 scene.add(smallbox02spotlight);
@@ -79,7 +79,7 @@ const smallbox02spotlightHelper = new THREE.SpotLightHelper(smallbox02spotlight)
 //scene.add(smallbox02spotlightHelper);
 
 //smallbox03 lighting
-const smallbox03spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
+const smallbox03spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.2);
 smallbox03spotlight.position.set(10.9, 10, 6);
 smallbox03spotlight.target.position.set(10.9, 0.75, 6);
 scene.add(smallbox03spotlight);
@@ -89,7 +89,7 @@ const smallbox03spotlightHelper = new THREE.SpotLightHelper(smallbox03spotlight)
 //scene.add(smallbox03spotlightHelper);
 
 //smallbox04 lighting
-const smallbox04spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
+const smallbox04spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.2);
 smallbox04spotlight.position.set(6, 10, 25);
 smallbox04spotlight.target.position.set(6, 0.75, 25);
 scene.add(smallbox04spotlight);
