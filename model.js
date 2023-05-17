@@ -1,7 +1,7 @@
 
-            import { OBJLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/OBJLoader.js'
-			import { MTLLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/MTLLoader.js'
-			import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/GLTFLoader.js';
+            import { OBJLoader} from './examples/jsm/loaders/OBJLoader.js'
+			import { MTLLoader} from './examples/jsm/loaders/MTLLoader.js'
+			import {GLTFLoader} from './examples/jsm/loaders/GLTFLoader.js';
             //import {GUI} from './build/gui/lil-gui.module.min.js';
 	
 	export function addModels(scene) {
@@ -64,7 +64,7 @@
 					stoneSgeometry.scale.set( 2, 2, 2 );
 					stoneSgeometry.name = "loaded_mesh"
 					stoneSgeometry.isDraggable = true;
-					scene.add( stoneSgeometry);
+					//scene.add( stoneSgeometry);
 					
 				});
 				})
@@ -75,7 +75,7 @@
 					stone_knief.scene.rotation.y = Math.PI / 8;
 					stone_knief.scene.scale.set(0.5,0.5,0.5);
 					stone_knief.scene.position.set( -1, 0.5, 1);
-					scene.add(stone_knief.scene);
+					//scene.add(stone_knief.scene);
 				})
 
 
@@ -91,7 +91,7 @@
 						stoneBgeometry.scale.set( 3, 3, 3 );
 						
 						stoneBgeometry.isDraggable = true;
-						scene.add( stoneBgeometry);
+						//scene.add( stoneBgeometry);
 						
 					});
 					})
@@ -100,7 +100,8 @@
 					stone_axe.scene.rotation.x = Math.PI / 2;
 					stone_axe.scene.rotation.z = Math.PI / 2;
 					
-					stone_axe.scene.position.set( -5, 0.5, 5);
+					stone_axe.scene.position.set( 13, 8, -44);
+					stone_axe.scene.scale.set(0.3,0.3,0.3)
 					scene.add(stone_axe.scene);
 				})
 				
@@ -109,27 +110,27 @@
 					iron_spear.scene.rotation.x = Math.PI / -2;
 					iron_spear.scene.scale.set(0.1,0.1,0.1);
 					iron_spear.scene.position.set( -7, 0.5, 5);
-					scene.add(iron_spear.scene);
+					//scene.add(iron_spear.scene);
 				})
 
 				gltfLoader.load('./models/iron_sword/scene.gltf',(iron_sword) => {
 					iron_sword.scene.rotation.z = Math.PI / -2;
 					iron_sword.scene.scale.set(10,10,10);
 					iron_sword.scene.position.set( -9, -4, 5);
-					scene.add(iron_sword.scene);
+					//scene.add(iron_sword.scene);
 				})
 
 				gltfLoader.load('./models/iron_axe/scene.gltf',(iron_axe) => {
 					iron_axe.scene.rotation.y = Math.PI / -2;
 					iron_axe.scene.scale.set(0.05,0.05,0.05);
 					iron_axe.scene.position.set( -12, 0, 5);
-					scene.add(iron_axe.scene);
+					//scene.add(iron_axe.scene);
 				})
 				
 				gltfLoader.load('./models/iron_crossbow/scene.gltf',(iron_crossbow) => {
 					iron_crossbow.scene.rotation.x = Math.PI / -2+2;
-					iron_crossbow.scene.scale.set(3,3,3);
-					iron_crossbow.scene.position.set( -18, 0, 5);
+					iron_crossbow.scene.scale.set(2,2,2);
+					iron_crossbow.scene.position.set( 16, 7, 6);
 					scene.add(iron_crossbow.scene);
 				})
 
@@ -137,33 +138,34 @@
 					bronze_dagger.scene.rotation.y = Math.PI / 2;
 					bronze_dagger.scene.scale.set(0.1,0.1,0.1);
 					bronze_dagger.scene.position.set( -20, 0, 5);
-					scene.add(bronze_dagger.scene);
+					//scene.add(bronze_dagger.scene);
 				})
 
 				gltfLoader.load('./models/bronze_khopesh/scene.gltf',(bronze_khopesh) => {
-					bronze_khopesh.scene.rotation.x = Math.PI / 2+4;
-					bronze_khopesh.scene.rotation.y = Math.PI / -1.2;
-					//bronze_khopesh.scene.rotation.z = Math.PI / 1.2;
+					bronze_khopesh.scene.rotation.x = Math.PI /-1.2 +0.5
+					bronze_khopesh.scene.rotation.z = +0.1;
 
 					bronze_khopesh.scene.scale.set(0.2,0.2,0.2);
-					bronze_khopesh.scene.position.set( -22, 0, 5);
-					scene.add(bronze_khopesh.scene);
+					bronze_khopesh.scene.position.set( -18, 10, 5);
+					//scene.add(bronze_khopesh.scene);
 				})
 
 				gltfLoader.load('./models/bronze_sword/scene.gltf',(bronze_sword) => {
 					bronze_sword.scene.rotation.y = Math.PI / -1.3;
-					bronze_sword.scene.rotation.x = Math.PI / 2-2.4;
+					bronze_sword.scene.rotation.x = -0.5;
+					//bronze_sword.scene.rotation.z = +0.5;
 
-					bronze_sword.scene.scale.set(0.03,0.03,0.03);
-					bronze_sword.scene.position.set( -26, 0, 3);
+
+					bronze_sword.scene.scale.set(0.02,0.02,0.02);
+					bronze_sword.scene.position.set( 8, 8, -17);
 					scene.add(bronze_sword.scene);
 				})
 
 				gltfLoader.load('./models/bronze_shield/scene.gltf',(bronze_shield) => {
 					bronze_shield.scene.rotation.y = Math.PI / 2-5;
 					bronze_shield.scene.scale.set(5,5,5);
-					bronze_shield.scene.position.set( -27, 0, 3);
-					scene.add(bronze_shield.scene);
+					bronze_shield.scene.position.set( -40, 20, 3);
+					//scene.add(bronze_shield.scene);
 				})
 
 }

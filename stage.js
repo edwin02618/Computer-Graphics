@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import backgroundfShader from './shader/backgroundfshader.glsl.js';
 import backgroundvShader from './shader/backgroundvshader.glsl.js';
+import {PointerLockControls} from './examples/jsm/controls/PointerLockControls.js';
 
 //create the scene
 //var scene = new THREE.Scene( );
@@ -33,18 +34,26 @@ camera.position.z = -45;
 camera.position.y = 1;
 camera.position.x = -1;
 
-var controls = new OrbitControls( camera, renderer.domElement );
+var controls = new PointerLockControls( camera, renderer.domElement );
 
-const input = {
-    up:false,
-    down: false,
-    left: false,
-    riht: false,
-  }
+let jumpraycaster;
+
+let moveForward = false;
+let moveBackward = false;
+let moveLeft = false;
+let moveRight = false;
+let canJump = false;
+
+
+let prevTime = performance.now();
+const velocity = new THREE.Vector3();
+const direction = new THREE.Vector3();
+
+
 
   var uniforms = {
     time: {value:0.0},
-    speed: {value : 6},
+    speed: {value : 4},
     fadeAway:{value: 0.7},
     resolution:{value: new THREE.Vector2(1, 1)},
     uniformity:{value: 10},
@@ -59,6 +68,9 @@ const input = {
     fragmentShader: backgroundfShader,
     side: THREE.DoubleSide
   })
+
+  const objects = [];
+  scene.add( controls.getObject() );
 
 const loader = new THREE.TextureLoader();
 
@@ -90,6 +102,8 @@ const floormesh = new THREE.Mesh( floorgeometry, floormaterial );
 floorgeometry.rotateX( - Math.PI / 2 );
 floormesh.position.y = -0.5
 scene.add( floormesh );
+
+objects.push(floormesh);
 
 
 const wallTexture = loader.load('img/wall.jpg')
@@ -186,56 +200,118 @@ const collidableMeshList = wallGroup.children;
 
 
 const clock = new THREE.Clock();
-const movementSpeed = 10;
-const rotationSpeed = 2;
+
+
+jumpraycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 ) 
+const movementRaycaster = new THREE.Raycaster();
+const lateralRaycaster = new THREE.Raycaster();
+const movementDirection = new THREE.Vector3();
+const lateralDirection = new THREE.Vector3();
+const collisionThreshold = 1;
 
 update();
 
 function update(){
-  const delta = clock.getDelta();
-  let facing = new THREE.Vector3();
-  camera.getWorldDirection(facing);
-  //controls.update();
+  requestAnimationFrame( update );
 
-  if (input.up){
-    var raycaster = new THREE.Raycaster(camera.position, facing);
-    var intersects = raycaster.intersectObjects(collidableMeshList);
+  const time = performance.now();
 
-    if (intersects.length > 0 && intersects[0].distance < 1) {
-      // the distance can be changed to adjust the collision threshold
-      // a collision occurred, do nothing, player won't be able to move forward
-      //console.log("Collision detected");
-    } else {
-      camera.position.z += facing.z * movementSpeed * delta;
-      camera.position.x += facing.x * movementSpeed * delta;
+  movementDirection.set(
+    -Math.sin(camera.rotation.y),0,-Math.cos(camera.rotation.y)
+  );
+  movementRaycaster.set(camera.position, movementDirection);
+
+  // Update the lateral raycaster
+  lateralDirection.set(-Math.cos(camera.rotation.y),0, Math.sin(camera.rotation.y)
+  );
+  lateralRaycaster.set(camera.position, lateralDirection);
+
+  // Check for collisions with collidableMeshList
+  const movementIntersects = movementRaycaster.intersectObjects(collidableMeshList);
+  const lateralIntersects = lateralRaycaster.intersectObjects(collidableMeshList);
+
+  // Handle movement collisions
+  if (movementIntersects.length > 0.5) {
+    const intersectionPoint = movementIntersects[0].point;
+    const distanceToIntersection = camera.position.distanceTo(intersectionPoint);
+    if (distanceToIntersection < collisionThreshold) {
+      camera.position.copy(intersectionPoint).sub(movementDirection.clone().normalize().multiplyScalar(collisionThreshold));
     }
   }
-  if (input.down){
-	var raycasterback = new THREE.Raycaster(camera.position, facing.negate());
-    var intersectsBack = raycasterback.intersectObjects(collidableMeshList);
+  
+  // Handle lateral collisions
+  if (lateralIntersects.length > 0.5) {
+    const intersectionPoint = lateralIntersects[0].point;
+    const distanceToIntersection = camera.position.distanceTo(intersectionPoint);
+    if (distanceToIntersection < collisionThreshold) {
+      camera.position.copy(intersectionPoint).sub(lateralDirection.clone().normalize().multiplyScalar(collisionThreshold));
+    }
+  }
 
-	if (intersectsBack.length > 0 && intersectsBack[0].distance < 1.5) {
-      // the distance can be changed to adjust the collision threshold
-      // a collision occurred, do nothing, player won't be able to move forward
-      //console.log("Collision detected");
-    } else {
-	camera.position.z -= facing.negate().z * movementSpeed * delta;
-	camera.position.x -= facing.x * movementSpeed * delta;
-  }
-}
-  if (input.right){
-	camera.rotation.y +=rotationSpeed * delta;
-  }
-  if (input.left){
-	camera.rotation.y -=rotationSpeed * delta;
-  }
+  jumpraycaster.ray.origin.copy( controls.getObject().position );
+  jumpraycaster.ray.origin.y = camera.position.y + 10;
+
+    const jumpintersections = jumpraycaster.intersectObjects( objects, false);
+
+    const onObject = jumpintersections.length > 0;
+
+    const delta = ( time - prevTime ) / 1000;
+
+    velocity.x -= velocity.x * 10.0 * delta;
+    velocity.z -= velocity.z * 10.0 * delta;
+
+    velocity.y -= 1 * 100.0 * delta; // 100.0 = mass
+
+    direction.z = Number( moveForward ) - Number( moveBackward );
+    direction.x = Number( moveRight ) - Number( moveLeft );
+    direction.normalize(); // this ensures consistent movements in all directions
+
+    if ( moveForward || moveBackward ) velocity.z -= direction.z * 100.0 * delta;
+    if ( moveLeft || moveRight ) velocity.x -= direction.x * 100.0 * delta;
+
+    if ( onObject === true ) {
+
+      velocity.y = Math.max( 0, velocity.y );
+      canJump = true;
+
+    }
+
+    controls.moveRight( - velocity.x * delta );
+    controls.moveForward( - velocity.z * delta );
+
+    controls.getObject().position.y += ( velocity.y * delta ); // new behavior
+
+    if ( controls.getObject().position.y < 3 ) {
+
+      velocity.y = 0;
+      controls.getObject().position.y = 3;
+
+      canJump = true;
+
+    }
+
+  
+
+  prevTime = time;
+
+  renderer.render( scene, camera );
 
   uniforms.time.value = clock.getElapsedTime()
-  requestAnimationFrame(update)
-  renderer.render(scene, camera);
 }
 
+let previousMouseX = 0;
 
+document.addEventListener('click', () => {
+  controls.lock();
+});
+
+const handleMouseMove = (event) => {
+  if (controls.isLocked) {
+    const mouseDeltaX = event.clientX - previousMouseX;
+    controls.getObject().rotation.y -= mouseDeltaX * 0.002;
+    previousMouseX = event.clientX;
+  }
+};
 
 var MyResize = function ( )
 {
@@ -252,7 +328,84 @@ var MyResize = function ( )
 renderer.render(scene,camera);
 
 window.addEventListener( 'resize', MyResize);
-  document.addEventListener('keydown', (event) =>{
+
+
+
+const onKeyDown = function ( event ) {
+  if (event.code === 'Escape') {
+    controls.unlock(); // Unlock the pointer lock controls
+    document.removeEventListener('mousemove', handleMouseMove); // Remove the mousemove event listener
+    return; // Exit the function to prevent camera movement
+  }
+
+  switch ( event.code ) {
+
+    case 'ArrowUp':
+    case 'KeyW':
+      moveForward = true;
+      break;
+
+    case 'ArrowLeft':
+    case 'KeyA':
+      moveLeft = true;
+      break;
+
+    case 'ArrowDown':
+    case 'KeyS':
+      moveBackward = true;
+      break;
+
+    case 'ArrowRight':
+    case 'KeyD':
+      moveRight = true;
+      break;
+
+    case 'Space':
+      if ( canJump === true ) velocity.y += 40;
+      canJump = false;
+      break;
+
+  }
+
+};
+
+const onKeyUp = function ( event ) {
+
+  switch ( event.code ) {
+
+    case 'ArrowUp':
+    case 'KeyW':
+      moveForward = false;
+      break;
+
+    case 'ArrowLeft':
+    case 'KeyA':
+      moveLeft = false;
+      break;
+
+    case 'ArrowDown':
+    case 'KeyS':
+      moveBackward = false;
+      break;
+
+    case 'ArrowRight':
+    case 'KeyD':
+      moveRight = false;
+      break;
+    case 'Escape':
+      controls.unlock(); // Unlock the pointer controls
+      document.removeEventListener('mousemove', handleMouseMove); // Remove the mousemove event listener
+      break;
+
+  }
+
+};
+
+document.addEventListener( 'keydown', onKeyDown );
+document.addEventListener( 'keyup', onKeyUp );
+document.addEventListener('mousemove', handleMouseMove, false);
+
+  /*document.addEventListener('keydown', (event) =>{
 	const key = event.key;
 	switch (key){
 		case 'w':
@@ -267,6 +420,11 @@ window.addEventListener( 'resize', MyResize);
 		case 'd':
 		input.right= true;
 		break;
+    case 'Space':
+		if ( input.canJump === true ) velocity.y += 350;
+		input.canJump = false;
+		break;
+      
 	}
   })
 
@@ -286,5 +444,5 @@ window.addEventListener( 'resize', MyResize);
 		input.right= false;
 		break;
 	}
-  })
+  })*/
 }
