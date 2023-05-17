@@ -54,7 +54,8 @@ const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox04 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox04material = new THREE.MeshPhysicalMaterial();
     const smallbox04mesh = new THREE.Mesh(smallbox04, smallbox04material );
-    smallbox04mesh.position.set(-6, 0.75, 32.5);
+    smallbox04mesh.position.set(6, 0.75, 25);
+    smallbox04mesh.rotation.y = Math.PI/2;
     scene.add(smallbox04mesh);
 
 //smallbox01 lighting 
@@ -89,8 +90,8 @@ const smallbox03spotlightHelper = new THREE.SpotLightHelper(smallbox03spotlight)
 
 //smallbox04 lighting
 const smallbox04spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox04spotlight.position.set(-6, 10, 32.5);
-smallbox04spotlight.target.position.set(-6, 0.75, 32.5);
+smallbox04spotlight.position.set(6, 10, 25);
+smallbox04spotlight.target.position.set(6, 0.75, 25);
 scene.add(smallbox04spotlight);
 scene.add(smallbox04spotlight.target);
 
@@ -119,9 +120,14 @@ const cage03 = new THREE.BoxGeometry(10, 5, 10);
     const cage03material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const cage03mesh = new THREE.Mesh(cage03, cage03material );
     cage03mesh.position.set(17.4, 2, 6);
-    
     scene.add(cage03mesh);
 
+    //cage04
+const cage04 = new THREE.BoxGeometry(10, 5, 10);
+const cage04material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
+const cage04mesh = new THREE.Mesh(cage04, cage04material );
+cage04mesh.position.set(6, 0.75, 31);
+scene.add(cage04mesh);
 
 
    
@@ -221,13 +227,13 @@ const halllight05spotlightHelper = new THREE.SpotLightHelper(halllight05spotligh
 //scene.add(halllight05spotlightHelper);
 
 //hallway light06
-const halllight06spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-halllight06spotlight.position.set(0, 10, 39);
-halllight06spotlight.target.position.set(0, -0.5, 39);
-scene.add(halllight06spotlight);
-scene.add(halllight06spotlight.target);
+//const halllight06spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
+//halllight06spotlight.position.set(0, 10, 39);
+//halllight06spotlight.target.position.set(0, -0.5, 39);
+//scene.add(halllight06spotlight);
+//scene.add(halllight06spotlight.target);
 
-const halllight06spotlightHelper = new THREE.SpotLightHelper(halllight06spotlight);
+//const halllight06spotlightHelper = new THREE.SpotLightHelper(halllight06spotlight);
 //scene.add(halllight06spotlightHelper);
 
   // Create the small box
@@ -392,8 +398,8 @@ spotLightFolder03.open()
 
 // morden lights
 const light04 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light04.position.set(-12.5, 20, 32.5)
-light04.target.position.set(-12.5, 4.5, 32.5)
+light04.position.set(6, 20, 31)
+light04.target.position.set(6, 4.5, 31)
 scene.add(light04.target);
 // for morden shadow
 light04.castShadow = true
