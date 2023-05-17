@@ -156,7 +156,7 @@ wallGroup.add(frontWall1, rightWall1, //leftWall1,
 			rightwall2,leftWall2, 
 			leftWall3, //rightWall3,
 			leftWall4, rightWall4,
-			rightWall5,leftWall5);
+			rightWall5,/*leftWall5*/ );
 
 //create collidableList and assign all the children in wall group
 const collidableMeshList = wallGroup.children;

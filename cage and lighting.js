@@ -49,7 +49,8 @@ var materials = [
 const smallbox03 = new THREE.BoxGeometry(3, 2.5, 10);
     const smallbox03material = new THREE.MeshPhysicalMaterial();
     const smallbox03mesh = new THREE.Mesh(smallbox03, smallbox03material );
-    smallbox03mesh.position.set(6, 0.75, 24);
+    smallbox03mesh.position.set(10.9, 0.75, 6);
+    
     scene.add(smallbox03mesh);
     //smallbox04
     const smallbox04 = new THREE.BoxGeometry(3, 2.5, 10);
@@ -80,8 +81,8 @@ const smallbox02spotlightHelper = new THREE.SpotLightHelper(smallbox02spotlight)
 
 //smallbox03 lighting
 const smallbox03spotlight = new THREE.SpotLight(0xffffff, 0.4, 100, Math.PI/10, 0.5);
-smallbox03spotlight.position.set(6, 10, 24);
-smallbox03spotlight.target.position.set(6, 0.75, 24);
+smallbox03spotlight.position.set(10.9, 10, 6);
+smallbox03spotlight.target.position.set(10.9, 0.75, 6);
 scene.add(smallbox03spotlight);
 scene.add(smallbox03spotlight.target);
 
@@ -115,29 +116,38 @@ const cage02 = new THREE.BoxGeometry(10, 5, 10);
     cage02mesh.rotation.y = +0.2; 
     scene.add(cage02mesh);
 
+    //cage03
+const cage03 = new THREE.BoxGeometry(10, 5, 10);
+    const cage03material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
+    const cage03mesh = new THREE.Mesh(cage03, cage03material );
+    cage03mesh.position.set(17.4, 2, 6);
+    
+    scene.add(cage03mesh);
+
+
 
    
   
-  var positions = [
-    new THREE.Vector3(12.5, 2, 7),
-    new THREE.Vector3(-12.5, 2, 15.5),
-    new THREE.Vector3(12.5, 2, 24),
-    new THREE.Vector3(-12.5, 2, 32.5)
-  ];
-  for (var i = 0; i < positions.length; i++) {
-    var geometry = new THREE.BoxGeometry(10, 5, 10);
-    const boxmaterial = new THREE.MeshPhysicalMaterial();
-    var cage = new THREE.Mesh(geometry, boxmaterial);
-    cage.position.copy(positions[i]);
-    scene.add(cage);
-    cages.push(cage);
+  //var positions = [
+    //new THREE.Vector3(12.5, 2, 7),
+    //new THREE.Vector3(-12.5, 2, 15.5),
+    //new THREE.Vector3(12.5, 2, 24),
+    //new THREE.Vector3(-12.5, 2, 32.5)
+  //];
+  //for (var i = 0; i < positions.length; i++) {
+    //var geometry = new THREE.BoxGeometry(10, 5, 10);
+    //const boxmaterial = new THREE.MeshPhysicalMaterial();
+    //var cage = new THREE.Mesh(geometry, boxmaterial);
+    //cage.position.copy(positions[i]);
+    //scene.add(cage);
+    //cages.push(cage);
   
     // Create a spot light
     //var spotLight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
     //spotLight.position.set(positions[i].x, positions[i].y + 10, positions[i].z);
     //scene.add(spotLight);
     //spotLights.push(spotLight);
-  }
+  //}
 
   // Create the hallway spotlights
 //var spotLights = [];
@@ -350,8 +360,8 @@ spotLightFolder02.open()
 
 // iron lights
 const light03 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
-light03.position.set(12.5, 20, 24)
-light03.target.position.set(12.5, 4.5, 24)
+light03.position.set(17.4, 20, 6)
+light03.target.position.set(17.4, 4.5, 6)
 scene.add(light03.target);
 // for  iron shadow
 light03.castShadow = true
