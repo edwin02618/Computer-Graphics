@@ -1,196 +1,215 @@
+import { OBJLoader } from './examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from './examples/jsm/loaders/MTLLoader.js';
+import { GLTFLoader } from './examples/jsm/loaders/GLTFLoader.js';
 
-            import { OBJLoader} from './examples/jsm/loaders/OBJLoader.js'
-			import { MTLLoader} from './examples/jsm/loaders/MTLLoader.js'
-			import {GLTFLoader} from './examples/jsm/loaders/GLTFLoader.js';
-            //import {GUI} from './build/gui/lil-gui.module.min.js';
-	
-	export function addModels(scene) {
+let currentModel = null;
 
-    //create the webgl renderer
-	
-	
+export function addModels(scene) {
+  const mtlLoader = new MTLLoader();
+  const gltfLoader = new GLTFLoader();
 
-	/*function light() {
-
-		var spotlight = new THREE.SpotLight();
-		//spotlight.color = new THREE.Color(0xfdd8ff);
-		spotlight.position.set(-0.7,20,0.5);
-		spotlight.castShadow = true;
-		spotlight.intensity = .5;
-		const lightcolor = new THREE.Color(0x1fffff);
-		//spotlight.lightcolor.set = lightcolor;
-
-		
-		//scene.add(spotlight);
-
-		/*var dirlight = new THREE.DirectionalLight(0xfdd8ff);
-		dirlight.position.set(1);
-		//dirlight.castShadow = true;
-		dirlight.intensity = 3;
-		scene.add(dirlight);
-		
-		const light = new THREE.HemisphereLight();
-		light.color = new THREE.Color(0x7ee6fb);
-		light.groundColor = new THREE.Color(0xfafebe);
-		scene.add(light);
-		
-	  
-		//const helper = new THREE.HemisphereLightHelper(light, 5)
-		//scene.add(helper);	
+  function loadModel(model) {
+    if (currentModel) {
+      scene.remove(currentModel);
+    }
+    currentModel = model;
+    scene.add(currentModel);
+  }
 
 
-		var ambi = new THREE.AmbientLight(new THREE.Color(1,1,1),7);
-		scene.add(ambi);
+  // Stone
+  const stoneModels = {
+    stoneSgeometry: {
+      mtlPath: './models/stone_spear/stone_spear.mtl',
+      objPath: './models/stone_spear/stone_spear.obj',
+      rotation: { x: 0, y: Math.PI / 2 - 1.1, z: 0 },
+      position: { x: 13, y: 8, z: -44 },
+      scale: { x: 1, y: 1, z: 1 }
+    },
+    stone_knief: {
+      gltfPath: './models/stone_knife/scene.gltf',
+      rotation: { x: 0, y: Math.PI / 8, z: 0 },
+      position: { x: 13, y: 8, z: -44 },
+      scale: { x: 0.5, y: 0.5, z: 0.5 }
+    },
+    stoneBgeometry: {
+      mtlPath: './models/stone_bow/uploads_files_1832926_bow.mtl',
+      objPath: './models/stone_bow/uploads_files_1832926_bow.obj',
+      rotation: { x: 0, y: Math.PI / 2 - 1, z: 0 },
+      position: { x: 13, y: 4, z: -50 },
+      scale: { x: 3, y: 3, z: 3 }
+    },
+    stone_axe: {
+      gltfPath: './models/stone_axe/scene.gltf',
+      rotation: { x: Math.PI / 2, y: 0, z: Math.PI / 2 },
+      position: { x: 13, y: 8, z: -44 },
+      scale: { x: 0.3, y: 0.3, z: 0.3 }
+    }
+  };
 
-		var pointlight = new THREE.PointLight(0xffffff, 2, 200);
-		pointlight.position.set(4.5,1,-4.5);
-		//pointlight.castShadow = true;
-		pointlight.intensity = 2;
-		scene.add(pointlight);
-	}*/
+  // Bronze
+  const bronzeModels = {
+    bronze_dagger: {
+      gltfPath: './models/bronze_dagger/scene.gltf',
+      rotation: { x: 0, y: Math.PI / 2, z: 0 },
+      position: { x: 8, y: 8, z: -17 },
+      scale: { x: 0.1, y: 0.1, z: 0.1 }
+    },
+    bronze_khopesh: {
+      gltfPath: './models/bronze_khopesh/scene.gltf',
+      rotation: { x: -Math.PI / 1.2 + 0.5, y: 0, z: 0.1 },
+      position: { x: 8, y: 8, z: -17 },
+      scale: { x: 0.2, y: 0.2, z: 0.2 }
+    },
+    bronze_sword: {
+      gltfPath: './models/bronze_sword/scene.gltf',
+      rotation: { x: -0.5, y: -Math.PI / 1.3, z: 0 },
+      position: { x: 8, y: 8, z: -17 },
+      scale: { x: 0.02, y: 0.02, z: 0.02 }
+    },
+    bronze_shield: {
+      gltfPath: './models/bronze_shield/scene.gltf',
+      rotation: { x: 0, y: Math.PI / 2 - 5, z: 0 },
+      position: { x: 8, y: 8, z: -17 },
+      scale: { x: 5, y: 5, z: 5 }
+    }
+  };
 
-	const mtlLoader = new MTLLoader();
-	const gltfLoader = new GLTFLoader();
+  // Iron
+  const ironModels = {
+    iron_spear: {
+      gltfPath: './models/iron_spear/scene.gltf',
+      rotation: { x: -Math.PI / 2, y: 0, z: 0 },
+      position: { x: 16, y: 7, z: 6 },
+      scale: { x: 0.1, y: 0.1, z: 0.1 }
+    },
+    iron_sword: {
+      gltfPath: './models/iron_sword/scene.gltf',
+      rotation: { x: 0, y: 0, z: -Math.PI / 2 },
+      position: { x: 16, y: 7, z: 6 },
+      scale: { x: 10, y: 10, z: 10 }
+    },
+    iron_axe: {
+      gltfPath: './models/iron_axe/scene.gltf',
+      rotation: { x: 0, y: -Math.PI / 2, z: 0 },
+      position: { x: 16, y: 7, z: 6 },
+      scale: { x: 0.01, y: 0.01, z: 0.01 }
+    },
+    iron_crossbow: {
+      gltfPath: './models/iron_crossbow/scene.gltf',
+      rotation: { x: -Math.PI / 2 + 2, y: 0, z: 0 },
+      position: { x: 16, y: 7, z: 6 },
+      scale: { x: 2, y: 2, z: 2 }
+    }
+  };
 
-				mtlLoader.load('./models/stone_spear/stone_spear.mtl', function(stoneSmaterial){
-				stoneSmaterial.preload();
+    // Load Stone Model
+    const stoneModel = stoneModels.stoneSgeometry;
+    mtlLoader.load(stoneModel.mtlPath, (materials) => {
+      materials.preload();
+  
+      const objLoader = new OBJLoader();
+      objLoader.setMaterials(materials);
+      objLoader.load(stoneModel.objPath, (object) => {
+        object.rotation.set(stoneModel.rotation.x, stoneModel.rotation.y, stoneModel.rotation.z);
+        object.position.set(stoneModel.position.x, stoneModel.position.y, stoneModel.position.z);
+        object.scale.set(stoneModel.scale.x, stoneModel.scale.y, stoneModel.scale.z);
+        loadModel(object);
+      });
+    });
+  
+    // Load Bronze Model
+    // const bronzeModel = bronzeModels.bronze_dagger;
+    // gltfLoader.load(bronzeModel.gltfPath, (gltf) => {
+    //   const sceneObject = gltf.scene;
+    //   sceneObject.rotation.set(bronzeModel.rotation.x, bronzeModel.rotation.y, bronzeModel.rotation.z);
+    //   sceneObject.position.set(bronzeModel.position.x, bronzeModel.position.y, bronzeModel.position.z);
+    //   sceneObject.scale.set(bronzeModel.scale.x, bronzeModel.scale.y, bronzeModel.scale.z);
+    //   loadModel(sceneObject);
+    // });
+  
+    // Load Iron Model
+    // const ironModel = ironModels.iron_spear;
+    // gltfLoader.load(ironModel.gltfPath, (gltf) => {
+    //   const sceneObject = gltf.scene;
+    //   sceneObject.rotation.set(ironModel.rotation.x, ironModel.rotation.y, ironModel.rotation.z);
+    //   sceneObject.position.set(ironModel.position.x, ironModel.position.y, ironModel.position.z);
+    //   sceneObject.scale.set(ironModel.scale.x, ironModel.scale.y, ironModel.scale.z);
+    //   loadModel(sceneObject);
+    // });
 
-				const objLoader = new OBJLoader();		
-				objLoader.setMaterials(stoneSmaterial);	
-				objLoader.load('./models/stone_spear/stone_spear.obj', function ( stoneSgeometry ) {
-					
-					stoneSgeometry.rotation.y = Math.PI / 2-1.1;
-					stoneSgeometry.position.set( 3, 0.5, 1);
-					stoneSgeometry.scale.set( 2, 2, 2 );
-					stoneSgeometry.name = "loaded_mesh"
-					stoneSgeometry.isDraggable = true;
-					//scene.add( stoneSgeometry);
-					
-				});
-				})
-	
-	
-	
-				gltfLoader.load('./models/stone_knife/scene.gltf',(stone_knief) => {
-					stone_knief.scene.rotation.y = Math.PI / 8;
-					stone_knief.scene.scale.set(0.5,0.5,0.5);
-					stone_knief.scene.position.set( -1, 0.5, 1);
-					//scene.add(stone_knief.scene);
-				})
+  gltfLoader.load('./models/modern_mosin_nagant_m91/scene.gltf',(m91) => {
+    m91.scene.rotation.y = Math.PI / 2;
+    m91.scene.rotation.x = +0.3
+    m91.scene.scale.set(6,6,6);
+    m91.scene.position.set( 6, 6, 31);
+    scene.add(m91.scene);
+  })
 
+  function createControlBar() {
+    const controlBar = document.createElement('div');
+    controlBar.style.position = 'absolute';
+    controlBar.style.top = '10px';
+    controlBar.style.left = '10px';
 
-				mtlLoader.load('./models/stone_bow/uploads_files_1832926_bow.mtl', function(stoneBmaterial){
-					stoneBmaterial.preload();
-	
-					const objLoader = new OBJLoader();		
-					objLoader.setMaterials(stoneBmaterial);	
-					objLoader.load('./models/stone_bow/uploads_files_1832926_bow.obj', function ( stoneBgeometry ) {
-						
-						stoneBgeometry.rotation.y = Math.PI / 2-1;
-						stoneBgeometry.position.set( 4, -3, 0);
-						stoneBgeometry.scale.set( 3, 3, 3 );
-						
-						stoneBgeometry.isDraggable = true;
-						//scene.add( stoneBgeometry);
-						
-					});
-					})
+    const stoneCategory = createCategory('Stone', stoneModels);
+    const ironCategory = createCategory('Iron', ironModels);
+    const bronzeCategory = createCategory('Bronze', bronzeModels);
 
-				gltfLoader.load('./models/stone_axe/scene.gltf',(stone_axe) => {
-					stone_axe.scene.rotation.x = Math.PI / 2;
-					stone_axe.scene.rotation.z = Math.PI / 2;
-					
-					stone_axe.scene.position.set( 13, 8, -44);
-					stone_axe.scene.scale.set(0.3,0.3,0.3)
-					scene.add(stone_axe.scene);
-				})
-				
-
-				gltfLoader.load('./models/iron_spear/scene.gltf',(iron_spear) => {
-					iron_spear.scene.rotation.x = Math.PI / -2;
-					iron_spear.scene.scale.set(0.1,0.1,0.1);
-					iron_spear.scene.position.set( -7, 0.5, 5);
-					//scene.add(iron_spear.scene);
-				})
-
-				gltfLoader.load('./models/iron_sword/scene.gltf',(iron_sword) => {
-					iron_sword.scene.rotation.z = Math.PI / -2;
-					iron_sword.scene.scale.set(10,10,10);
-					iron_sword.scene.position.set( -9, -4, 5);
-					//scene.add(iron_sword.scene);
-				})
-
-				gltfLoader.load('./models/iron_axe/scene.gltf',(iron_axe) => {
-					iron_axe.scene.rotation.y = Math.PI / -2;
-					iron_axe.scene.scale.set(0.05,0.05,0.05);
-					iron_axe.scene.position.set( -12, 0, 5);
-					//scene.add(iron_axe.scene);
-				})
-				
-				gltfLoader.load('./models/iron_crossbow/scene.gltf',(iron_crossbow) => {
-					iron_crossbow.scene.rotation.x = Math.PI / -2+2;
-					iron_crossbow.scene.scale.set(2,2,2);
-					iron_crossbow.scene.position.set( 16, 7, 6);
-					scene.add(iron_crossbow.scene);
-				})
-
-				gltfLoader.load('./models/bronze_dagger/scene.gltf',(bronze_dagger) => {
-					bronze_dagger.scene.rotation.y = Math.PI / 2;
-					bronze_dagger.scene.scale.set(0.1,0.1,0.1);
-					bronze_dagger.scene.position.set( -20, 0, 5);
-					//scene.add(bronze_dagger.scene);
-				})
-
-				gltfLoader.load('./models/bronze_khopesh/scene.gltf',(bronze_khopesh) => {
-					bronze_khopesh.scene.rotation.x = Math.PI /-1.2 +0.5
-					bronze_khopesh.scene.rotation.z = +0.1;
-
-					bronze_khopesh.scene.scale.set(0.2,0.2,0.2);
-					bronze_khopesh.scene.position.set( -18, 10, 5);
-					//scene.add(bronze_khopesh.scene);
-				})
-
-				gltfLoader.load('./models/bronze_sword/scene.gltf',(bronze_sword) => {
-					bronze_sword.scene.rotation.y = Math.PI / -1.3;
-					bronze_sword.scene.rotation.x = -0.5;
-					//bronze_sword.scene.rotation.z = +0.5;
+    controlBar.appendChild(stoneCategory);
+	  controlBar.appendChild(bronzeCategory);
+    controlBar.appendChild(ironCategory);
 
 
-					bronze_sword.scene.scale.set(0.02,0.02,0.02);
-					bronze_sword.scene.position.set( 8, 8, -17);
-					scene.add(bronze_sword.scene);
-				})
+    document.body.appendChild(controlBar);
+  }
 
-				gltfLoader.load('./models/bronze_shield/scene.gltf',(bronze_shield) => {
-					bronze_shield.scene.rotation.y = Math.PI / 2-5;
-					bronze_shield.scene.scale.set(5,5,5);
-					bronze_shield.scene.position.set( -40, 20, 3);
-					//scene.add(bronze_shield.scene);
-				})
 
-				gltfLoader.load('./models/modern_mosin_nagant_m91/scene.gltf',(m91) => {
-					m91.scene.rotation.y = Math.PI / 2;
-					m91.scene.rotation.x = +0.3
-					m91.scene.scale.set(6,6,6);
-					m91.scene.position.set( 6, 6, 31);
-					scene.add(m91.scene);
-				})
-				
 
+function createCategory(categoryName, models) {
+  const categoryContainer = document.createElement('div');
+  categoryContainer.style.marginBottom = '10px';
+
+  const categoryTitle = document.createElement('h3');
+  categoryTitle.textContent = categoryName;
+  categoryTitle.style.color = 'white'; 
+  categoryContainer.appendChild(categoryTitle);
+
+  for (const modelName in models) {
+    const model = models[modelName];
+    const button = document.createElement('button');
+    button.textContent = modelName;
+    button.addEventListener('click', () => {
+      const { gltfPath, mtlPath, objPath, rotation, position, scale } = model;
+
+      if (gltfPath) {
+        gltfLoader.load(gltfPath, (gltf) => {
+          const sceneObject = gltf.scene;
+          sceneObject.rotation.set(rotation.x, rotation.y, rotation.z);
+          sceneObject.position.set(position.x, position.y, position.z);
+          sceneObject.scale.set(scale.x, scale.y, scale.z);
+          loadModel(sceneObject);
+        });
+      } else if (mtlPath && objPath) {
+        mtlLoader.load(mtlPath, (materials) => {
+          materials.preload();
+
+          const objLoader = new OBJLoader();
+          objLoader.setMaterials(materials);
+          objLoader.load(objPath, (object) => {
+            object.rotation.set(rotation.x, rotation.y, rotation.z);
+            object.position.set(position.x, position.y, position.z);
+            object.scale.set(scale.x, scale.y, scale.z);
+            loadModel(object);
+          });
+        });
+      }
+    });
+
+    categoryContainer.appendChild(button);
+  }
+
+  return categoryContainer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  createControlBar();
+}
