@@ -109,7 +109,7 @@ const cage01 = new THREE.BoxGeometry(10, 5, 10);
     //scene.add(cage01mesh);
 
    const cageStone = new THREE.BoxGeometry(7, 11, 7);
-    const cageStonematerial = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
+    const cageStonematerial = new THREE.MeshPhysicalMaterial({attenuationColor : 0xffffff, color: 0xffffff});
     cageStonematerial.transmission = 1.0;
     cageStonematerial.roughness = 0;
     cageStonematerial.ior = 1.2;
