@@ -123,7 +123,7 @@ frontWall1.position.y = 4.5;
 frontWall1.position.x = 1.4;
 
 // right Wall
-const rightWall1 = new THREE.Mesh(new THREE.BoxGeometry(40, 10, 1), wallMaterial );
+const rightWall1 = new THREE.Mesh(new THREE.BoxGeometry(40, 17, 1), wallMaterial );
 
 rightWall1.rotation.y = Math.PI / 2 + 0.3; 
 rightWall1.position.x = -4.5;
@@ -131,59 +131,59 @@ rightWall1.position.y = 4.5;
 rightWall1.position.z = -40;
 
 // left Wall
-const leftWall1 = new THREE.Mesh(new THREE.BoxGeometry(18, 10, 1), wallMaterial );
+const leftWall1 = new THREE.Mesh(new THREE.BoxGeometry(18, 17, 1), wallMaterial );
 
 leftWall1.rotation.y = Math.PI / 2+ 0.3; 
 leftWall1.position.x = 4.5; 
 leftWall1.position.y = 4.5;
 leftWall1.position.z = -42;
 
-const rightwall2 = new THREE.Mesh(new THREE.BoxGeometry(16, 10, 1), wallMaterial );
+const rightwall2 = new THREE.Mesh(new THREE.BoxGeometry(16, 17, 1), wallMaterial );
 rightwall2.rotation.y = +0.2; 
 rightwall2.position.z = -23;
 rightwall2.position.y = 4.5;
 rightwall2.position.x = 8.5;
 
-const leftWall2 = new THREE.Mesh(new THREE.BoxGeometry(20, 10, 1), wallMaterial );
+const leftWall2 = new THREE.Mesh(new THREE.BoxGeometry(20, 17, 1), wallMaterial );
 
 leftWall2.rotation.y = +0.3; 
 leftWall2.position.x = 16.1; 
 leftWall2.position.y = 4.5;
 leftWall2.position.z = -39;
 
-const leftWall3 = new THREE.Mesh(new THREE.BoxGeometry(38, 10, 1), wallMaterial );
+const leftWall3 = new THREE.Mesh(new THREE.BoxGeometry(38, 17, 1), wallMaterial );
 leftWall3.rotation.y = Math.PI / 2; 
 leftWall3.position.x = 25.1;
 leftWall3.position.z = -22;
 leftWall3.position.y = 4.5;
 
 
-const rightWall3 = new THREE.Mesh(new THREE.BoxGeometry(17, 10, 1), wallMaterial );
+const rightWall3 = new THREE.Mesh(new THREE.BoxGeometry(17, 17, 1), wallMaterial );
 
 rightWall3.rotation.y = Math.PI / 2
 rightWall3.position.x = 17.32; 
 rightWall3.position.y = 4.5;
 rightWall3.position.z = -19.7;
 
-const leftWall4 = new THREE.Mesh(new THREE.BoxGeometry(16, 10, 1), wallMaterial );
+const leftWall4 = new THREE.Mesh(new THREE.BoxGeometry(16, 17, 1), wallMaterial );
 leftWall4.rotation.y = 0.2
 leftWall4.position.x = 17.9;
 leftWall4.position.z = -1.5;
 leftWall4.position.y = 4.5;
 
-const rightWall4 = new THREE.Mesh(new THREE.BoxGeometry(18, 10, 1), wallMaterial );
+const rightWall4 = new THREE.Mesh(new THREE.BoxGeometry(18, 17, 1), wallMaterial );
 rightWall4.rotation.y = 0.2
 rightWall4.position.x = 9.4;
 rightWall4.position.z = -10.8;
 rightWall4.position.y = 4.5;
 
-const rightWall5 = new THREE.Mesh(new THREE.BoxGeometry(35, 10, 1), wallMaterial );
+const rightWall5 = new THREE.Mesh(new THREE.BoxGeometry(35, 17, 1), wallMaterial );
 rightWall5.rotation.y = Math.PI / 2 
 rightWall5.position.x = 0;
 rightWall5.position.z = +7;
 rightWall5.position.y = 4.5;
 
-const leftWall5 = new THREE.Mesh(new THREE.BoxGeometry(13.5, 10, 1), wallMaterial );
+const leftWall5 = new THREE.Mesh(new THREE.BoxGeometry(13.5, 17, 1), wallMaterial );
 leftWall5.rotation.y = Math.PI / 2 
 leftWall5.position.x = 12;
 leftWall5.position.z = +17.8;
