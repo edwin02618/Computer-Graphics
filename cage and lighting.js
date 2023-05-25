@@ -15,7 +15,9 @@ var materials = [
   ];
   
   // Create the cages and spot lights and add them to the scene
-  var cages = [];
+  var cages = [
+    
+  ];
   var spotLights = [];
   var smallBox = [
     new THREE.Vector3(6,1, 7),
@@ -107,13 +109,33 @@ const cage01 = new THREE.BoxGeometry(10, 5, 10);
     cage01mesh.rotation.y = + 0.3; 
     //scene.add(cage01mesh);
 
+   const cageStone = new THREE.BoxGeometry(7, 13, 7);
+    const cageStonematerial = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
+    cageStonematerial.transmission = 1.0;
+    cageStonematerial.roughness = 0;
+    cageStonematerial.ior = 1.2;
+    cageStonematerial.thickness = 0.1;
+    const cageStonemesh = new THREE.Mesh(cageStone, cageStonematerial );
+    cageStonemesh.position.set(13, 8, -44);
+    cageStonemesh.rotation.y = + 0.3; 
+    scene.add(cageStonemesh); 
+
 //cage02
 const cage02 = new THREE.BoxGeometry(10, 5, 10);
     const cage02material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
     const cage02mesh = new THREE.Mesh(cage02, cage02material );
-    cage02mesh.position.set(9, 0.75, -17);
+    cage02mesh.position.set(9,0.75, -17);
     cage02mesh.rotation.y = +0.2; 
     //scene.add(cage02mesh);
+    const cageStone2 = new THREE.BoxGeometry(7, 13, 7);
+    cageStonematerial.transmission = 1.0;
+    cageStonematerial.roughness = 0;
+    cageStonematerial.ior = 1.2;
+    cageStonematerial.thickness = 0.1;
+    const cageStonemesh2 = new THREE.Mesh(cageStone2, cageStonematerial);
+    cageStonemesh2.position.set(9,8, -17);
+    cageStonemesh2.rotation.y = + 0.2; 
+    scene.add(cageStonemesh2); 
 
     //cage03
 const cage03 = new THREE.BoxGeometry(10, 5, 10);
@@ -121,6 +143,14 @@ const cage03 = new THREE.BoxGeometry(10, 5, 10);
     const cage03mesh = new THREE.Mesh(cage03, cage03material );
     cage03mesh.position.set(17.4, 0.75, 6);
     //scene.add(cage03mesh);
+    const cageStone3 = new THREE.BoxGeometry(7, 13, 7);
+    cageStonematerial.transmission = 1.0;
+    cageStonematerial.roughness = 0;
+    cageStonematerial.ior = 1.2;
+    cageStonematerial.thickness = 0.1;
+    const cageStonemesh3 = new THREE.Mesh(cageStone3, cageStonematerial);
+    cageStonemesh3.position.set(17.4, 8, 6);
+    scene.add(cageStonemesh3); 
 
     //cage04
 const cage04 = new THREE.BoxGeometry(10, 5, 10);
@@ -128,6 +158,14 @@ const cage04material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff00
 const cage04mesh = new THREE.Mesh(cage04, cage04material );
 cage04mesh.position.set(6, 0.75, 31);
 //scene.add(cage04mesh);
+const cageStone4 = new THREE.BoxGeometry(7, 13, 7);
+    cageStonematerial.transmission = 1.0;
+    cageStonematerial.roughness = 0;
+    cageStonematerial.ior = 1.2;
+    cageStonematerial.thickness = 0.1;
+    const cageStonemesh4 = new THREE.Mesh(cageStone4, cageStonematerial);
+    cageStonemesh4.position.set(6, 8, 31);
+    scene.add(cageStonemesh4); 
 
 
 wallGroup.add(cage01mesh, cage02mesh, cage03mesh, cage04mesh, smallbox01mesh, smallbox02mesh, smallbox03mesh, smallbox04mesh);
