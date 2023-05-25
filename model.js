@@ -23,21 +23,21 @@ export function addModels(scene) {
       mtlPath: './models/stone_spear/stone_spear.mtl',
       objPath: './models/stone_spear/stone_spear.obj',
       rotation: { x: 0, y: Math.PI / 2 - 1.1, z: 0 },
-      position: { x: 13, y: 8, z: -44 },
+      position: { x: 13, y: 6, z: -44 },
       scale: { x: 1, y: 1, z: 1 }
     },
     stone_knief: {
       gltfPath: './models/stone_knife/scene.gltf',
       rotation: { x: 0, y: Math.PI / 8, z: 0 },
-      position: { x: 13, y: 8, z: -44 },
-      scale: { x: 0.5, y: 0.5, z: 0.5 }
+      position: { x: 13, y: 6, z: -44 },
+      scale: { x: 0.25, y: 0.25, z: 0.25 }
     },
     stoneBgeometry: {
       mtlPath: './models/stone_bow/uploads_files_1832926_bow.mtl',
       objPath: './models/stone_bow/uploads_files_1832926_bow.obj',
-      rotation: { x: 0, y: Math.PI / 2 - 1, z: 0 },
-      position: { x: 13, y: 4, z: -50 },
-      scale: { x: 3, y: 3, z: 3 }
+      rotation: { x: 0, y: Math.PI / 2 , z: 0 },
+      position: { x: 11, y: 3, z: -44 },
+      scale: { x: 1.5, y: 1.5, z: 1.5 }
     },
     stone_axe: {
       gltfPath: './models/stone_axe/scene.gltf',
@@ -53,25 +53,25 @@ export function addModels(scene) {
       gltfPath: './models/bronze_dagger/scene.gltf',
       rotation: { x: 0, y: Math.PI / 2, z: 0 },
       position: { x: 8, y: 8, z: -17 },
-      scale: { x: 0.1, y: 0.1, z: 0.1 }
+      scale: { x: 0.05, y: 0.05, z: 0.05 }
     },
     bronze_khopesh: {
       gltfPath: './models/bronze_khopesh/scene.gltf',
       rotation: { x: -Math.PI / 1.2 + 0.5, y: 0, z: 0.1 },
       position: { x: 8, y: 8, z: -17 },
-      scale: { x: 0.2, y: 0.2, z: 0.2 }
+      scale: { x: 0.1, y: 0.1, z: 0.1 }
     },
     bronze_sword: {
       gltfPath: './models/bronze_sword/scene.gltf',
       rotation: { x: -0.5, y: -Math.PI / 1.3, z: 0 },
-      position: { x: 8, y: 8, z: -17 },
-      scale: { x: 0.02, y: 0.02, z: 0.02 }
+      position: { x: 8, y: 7, z: -17 },
+      scale: { x: 0.01, y: 0.01, z: 0.01 }
     },
     bronze_shield: {
       gltfPath: './models/bronze_shield/scene.gltf',
       rotation: { x: 0, y: Math.PI / 2 - 5, z: 0 },
-      position: { x: 8, y: 8, z: -17 },
-      scale: { x: 5, y: 5, z: 5 }
+      position: { x: 8, y: 6, z: -17 },
+      scale: { x: 4.5, y: 4.5, z: 4.5 }
     }
   };
 
@@ -81,13 +81,13 @@ export function addModels(scene) {
       gltfPath: './models/iron_spear/scene.gltf',
       rotation: { x: -Math.PI / 2, y: 0, z: 0 },
       position: { x: 16, y: 7, z: 6 },
-      scale: { x: 0.1, y: 0.1, z: 0.1 }
+      scale: { x: 0.04, y: 0.04, z: 0.04 }
     },
     iron_sword: {
       gltfPath: './models/iron_sword/scene.gltf',
       rotation: { x: 0, y: 0, z: -Math.PI / 2 },
-      position: { x: 16, y: 7, z: 6 },
-      scale: { x: 10, y: 10, z: 10 }
+      position: { x: 16, y: 5, z: 6 },
+      scale: { x: 5, y: 5, z: 5 }
     },
     iron_axe: {
       gltfPath: './models/iron_axe/scene.gltf',
@@ -98,7 +98,7 @@ export function addModels(scene) {
     iron_crossbow: {
       gltfPath: './models/iron_crossbow/scene.gltf',
       rotation: { x: -Math.PI / 2 + 2, y: 0, z: 0 },
-      position: { x: 16, y: 7, z: 6 },
+      position: { x: 16, y: 6, z: 6 },
       scale: { x: 2, y: 2, z: 2 }
     }
   };
