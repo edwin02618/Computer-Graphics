@@ -101,14 +101,14 @@ const modernModels = {
   modern_tac_force_knife: {
     gltfPath: './models/modern_tac_force_knife/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
-    position: { x: 6, y: 6, z: 31 },
-    scale: { x: 6, y: 6, z: 6 }
+    position: { x: 6, y: 7.5, z: 31 },
+    scale: { x: 2, y: 2, z: 2 }
   },
   modern_tomahawk: {
     gltfPath: './models/modern_tomahawk/scene.gltf',
     rotation: { x: 0, y: 0, z: 0 },
-    position: { x: 6, y: 6, z: 31 },
-    scale: { x: 0.005, y: 0.005, z: 0.005 }
+    position: { x: 6, y: 6.5, z: 31 },
+    scale: { x: 0.003, y: 0.003, z: 0.003 }
   }
 };
 
