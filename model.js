@@ -85,6 +85,35 @@ const ironModels = {
   }
 };
 
+const modernModels = {
+  modern_mosin_nagant_m91: {
+    gltfPath: './models/modern_mosin_nagant_m91/scene.gltf',
+    rotation: { x: 0.3, y: Math.PI / 2, z: 0 },
+    position: { x: 6, y: 6, z: 31 },
+    scale: { x: 5, y: 5, z: 5 }
+  },
+  modern_remington: {
+    gltfPath: './models/modern_remington/scene.gltf',
+    rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
+    position: { x: 6, y: 6, z: 31 },
+    scale: { x: 4, y: 4, z: 4 }
+  },
+  modern_tac_force_knife: {
+    gltfPath: './models/modern_tac_force_knife/scene.gltf',
+    rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
+    position: { x: 6, y: 6, z: 31 },
+    scale: { x: 6, y: 6, z: 6 }
+  },
+  modern_tomahawk: {
+    gltfPath: './models/modern_tomahawk/scene.gltf',
+    rotation: { x: 0, y: 0, z: 0 },
+    position: { x: 6, y: 6, z: 31 },
+    scale: { x: 0.005, y: 0.005, z: 0.005 }
+  }
+};
+
+
+
 export function addModels(scene) {
   const mtlLoader = new MTLLoader();
   const gltfLoader = new GLTFLoader();
@@ -99,33 +128,64 @@ export function addModels(scene) {
   stoneButton.innerText = 'Stone';
   container.appendChild(stoneButton);
 
-  // Stone model name
+  // Stone name and year
   const stoneName = document.createElement('span');
   stoneName.className = 'modelName';
   stoneName.style.color = 'white';
   container.appendChild(stoneName);
+
+  const stoneYear = document.createElement('span');
+  stoneYear.className = 'modelYear';
+  stoneYear.style.color = 'white';
+  container.appendChild(stoneYear);
 
   // Bronze button
   const bronzeButton = document.createElement('button');
   bronzeButton.innerText = 'Bronze';
   container.appendChild(bronzeButton);
 
-  // Bronze model name
+  // Bronze name and year
   const bronzeName = document.createElement('span');
   bronzeName.className = 'modelName';
   bronzeName.style.color = 'white';
   container.appendChild(bronzeName);
+
+  const bronzeYear = document.createElement('span');
+  bronzeYear.className = 'modelYear';
+  bronzeYear.style.color = 'white';
+  container.appendChild(bronzeYear);
 
   // Iron button
   const ironButton = document.createElement('button');
   ironButton.innerText = 'Iron';
   container.appendChild(ironButton);
 
-  // Iron model name
+  // Iron name and year
   const ironName = document.createElement('span');
   ironName.className = 'modelName';
   ironName.style.color = 'white';
   container.appendChild(ironName);
+
+  const ironYear = document.createElement('span');
+  ironYear.className = 'modelYear';
+  ironYear.style.color = 'white';
+  container.appendChild(ironYear);
+
+  // Modern button
+  const modernButton = document.createElement('button');
+  modernButton.innerText = 'Modern';
+  container.appendChild(modernButton);
+
+  // Modern name and year
+  const modernName = document.createElement('span');
+  modernName.className = 'modelName';
+  modernName.style.color = 'white';
+  container.appendChild(modernName);
+
+  const modernYear = document.createElement('span');
+  modernYear.className = 'modelYear';
+  modernYear.style.color = 'white';
+  container.appendChild(modernYear);
 
   // Model index variables
   let stoneModelIndex = 0;
@@ -136,6 +196,9 @@ export function addModels(scene) {
 
   let ironModelIndex = 0;
   const ironModelsArray = Object.keys(ironModels);
+
+  let modernModelIndex = 0;
+  const modernModelsArray = Object.keys(modernModels);
 
   // Stone button event listener
   stoneButton.addEventListener('click', () => {
@@ -161,35 +224,46 @@ export function addModels(scene) {
     ironModelIndex = (ironModelIndex + 1) % ironModelsArray.length;
   });
 
+  // Modern button event listener
+  modernButton.addEventListener('click', () => {
+    const model = modernModelsArray[modernModelIndex];
+    loadModel(modernModels[model], 'modernModel');
+    modernName.innerText = model;
+    modernModelIndex = (modernModelIndex + 1) % modernModelsArray.length;
+  });
+
   // Set CSS styles for the container
   container.style.position = 'absolute';
   container.style.top = '10px';
   container.style.left = '10px';
 
-  // Display initial models
+  // Load the initial stone model
   const initialStoneModel = stoneModelsArray[stoneModelIndex];
   loadModel(stoneModels[initialStoneModel], 'stoneModel');
   stoneName.innerText = initialStoneModel;
+  stoneYear.innerText = ', StartingYear:3300BCE ';
   stoneModelIndex = (stoneModelIndex + 1) % stoneModelsArray.length;
 
+  // Load the initial bronze model
   const initialBronzeModel = bronzeModelsArray[bronzeModelIndex];
   loadModel(bronzeModels[initialBronzeModel], 'bronzeModel');
   bronzeName.innerText = initialBronzeModel;
+  bronzeYear.innerText = ', Starting ear:1200BC ';
   bronzeModelIndex = (bronzeModelIndex + 1) % bronzeModelsArray.length;
 
+  // Load the initial iron model
   const initialIronModel = ironModelsArray[ironModelIndex];
   loadModel(ironModels[initialIronModel], 'ironModel');
   ironName.innerText = initialIronModel;
+  ironYear.innerText = ', StartingYear:600BC ';
   ironModelIndex = (ironModelIndex + 1) % ironModelsArray.length;
 
-  // Load the "modern_mosin_nagant_m91" model
-  gltfLoader.load('./models/modern_mosin_nagant_m91/scene.gltf', (m91) => {
-    m91.scene.rotation.y = Math.PI / 2;
-    m91.scene.rotation.x = 0.3;
-    m91.scene.scale.set(5, 5, 5);
-    m91.scene.position.set(6, 6, 31);
-    scene.add(m91.scene);
-  });
+  // Load the initial modern model
+  const initialModernModel = modernModelsArray[modernModelIndex];
+  loadModel(modernModels[initialModernModel], 'modernModel');
+  modernName.innerText = initialModernModel;
+  modernYear.innerText = ', StartingYear:1364 ';
+  modernModelIndex = (modernModelIndex + 1) % modernModelsArray.length;
 
   function loadModel(modelData, modelName) {
     // Remove existing models of the same category
@@ -222,3 +296,4 @@ export function addModels(scene) {
     }
   }
 }
+
