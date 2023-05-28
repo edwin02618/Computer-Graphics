@@ -186,7 +186,7 @@ export function addModels(scene) {
   gltfLoader.load('./models/modern_mosin_nagant_m91/scene.gltf', (m91) => {
     m91.scene.rotation.y = Math.PI / 2;
     m91.scene.rotation.x = 0.3;
-    m91.scene.scale.set(6, 6, 6);
+    m91.scene.scale.set(5, 5, 5);
     m91.scene.position.set(6, 6, 31);
     scene.add(m91.scene);
   });
