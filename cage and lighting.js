@@ -1,34 +1,28 @@
 import * as THREE from 'three';
       import {GUI} from '//cdn.skypack.dev/three@0.131.1/examples/jsm/libs/dat.gui.module.js'
-      
+      import fshader from './shader/fshader.glsl.js';
+      import vshader from './shader/vshader.glsl.js';
 export function initializeCageLighting(scene) {
       //GUI
       const gui = new GUI()
 
 
-            // Create the materials
-var materials = [
-    new THREE.MeshBasicMaterial({ color: 0xff0000 }), // red
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // green
-    new THREE.MeshBasicMaterial({ color: 0x0000ff }), // blue
-    new THREE.MeshBasicMaterial({ color: 0xffff00 })  // yellow
-  ];
+  var uniforms = {
+    time: {value:0.0},
+    resolution:{value: 3},
+    intensity:{value: 10},
+    speed: {value : 1},
+    lightColor:{value: new THREE.Color(0.96078431372549, 0.541176470588235, 0)},
+    baseColor:{value: new THREE.Color(1,1,1)},
+  }
   
-  // Create the cages and spot lights and add them to the scene
-  var cages = [
-    
-  ];
-  var spotLights = [];
-  var smallBox = [
-    new THREE.Vector3(6,1, 7),
-    new THREE.Vector3(-6, 1, 15.5),
-    new THREE.Vector3(6, 1, 24),
-    new THREE.Vector3(-6, 1, 32.5)
-  ];
-  //smallbox01: 6,0.75, 7 light y: 10
-  //smallbox02: -6, 0.75, 15.5 light y: 10
-  //smallbox03: 6, 0.75, 24 light y: 10
-  //smallbox03: -6, 0.75, 32.5 light y: 10
+  const cageshaderMaterial = new THREE.ShaderMaterial({
+    uniforms :uniforms,
+    vertexShader :vshader,
+    fragmentShader: fshader,
+    side: THREE.DoubleSide
+  })
+
 
   //smallbox 01
     const smallbox01 = new THREE.BoxGeometry(6, 2.5, 10);
@@ -37,6 +31,7 @@ var materials = [
     smallbox01mesh.position.set(7,0.75, -42.2);
     smallbox01mesh.rotation.y = + 0.3; 
     //scene.add(smallbox01mesh);
+
 //smallbox02
     const smallbox02 = new THREE.BoxGeometry(6, 2.5, 10);
     const smallbox02material = new THREE.MeshPhysicalMaterial();
@@ -103,7 +98,7 @@ const smallbox04spotlightHelper = new THREE.SpotLightHelper(smallbox04spotlight)
 
 const cage01 = new THREE.BoxGeometry(10, 5, 10);
     const cage01material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
-    const cage01mesh = new THREE.Mesh(cage01, cage01material );
+    const cage01mesh = new THREE.Mesh(cage01, cageshaderMaterial );
     cage01mesh.position.set(13, 0.75, -44);
     cage01mesh.rotation.y = + 0.3; 
     //scene.add(cage01mesh);
@@ -122,7 +117,7 @@ const cage01 = new THREE.BoxGeometry(10, 5, 10);
 //cage02
 const cage02 = new THREE.BoxGeometry(10, 5, 10);
     const cage02material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
-    const cage02mesh = new THREE.Mesh(cage02, cage02material );
+    const cage02mesh = new THREE.Mesh(cage02, cageshaderMaterial );
     cage02mesh.position.set(9,0.75, -17);
     cage02mesh.rotation.y = +0.2; 
     //scene.add(cage02mesh);
@@ -139,7 +134,7 @@ const cage02 = new THREE.BoxGeometry(10, 5, 10);
     //cage03
 const cage03 = new THREE.BoxGeometry(10, 5, 10);
     const cage03material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
-    const cage03mesh = new THREE.Mesh(cage03, cage03material );
+    const cage03mesh = new THREE.Mesh(cage03, cageshaderMaterial );
     cage03mesh.position.set(17.4, 0.75, 6);
     //scene.add(cage03mesh);
     const cageStone3 = new THREE.BoxGeometry(7, 11, 7);
@@ -154,7 +149,7 @@ const cage03 = new THREE.BoxGeometry(10, 5, 10);
     //cage04
 const cage04 = new THREE.BoxGeometry(10, 5, 10);
 const cage04material = new THREE.MeshPhysicalMaterial({attenuationColor : 0xff0000});
-const cage04mesh = new THREE.Mesh(cage04, cage04material );
+const cage04mesh = new THREE.Mesh(cage04, cageshaderMaterial );
 cage04mesh.position.set(6, 0.75, 31);
 //scene.add(cage04mesh);
 const cageStone4 = new THREE.BoxGeometry(7, 11, 7);
@@ -167,52 +162,19 @@ const cageStone4 = new THREE.BoxGeometry(7, 11, 7);
     scene.add(cageStonemesh4); 
 
 
+
 wallGroup.add(cage01mesh, cage02mesh, cage03mesh, cage04mesh, smallbox01mesh, smallbox02mesh, smallbox03mesh, smallbox04mesh);
 
+const clock = new THREE.Clock();
   
-  //var positions = [
-    //new THREE.Vector3(12.5, 2, 7),
-    //new THREE.Vector3(-12.5, 2, 15.5),
-    //new THREE.Vector3(12.5, 2, 24),
-    //new THREE.Vector3(-12.5, 2, 32.5)
-  //];
-  //for (var i = 0; i < positions.length; i++) {
-    //var geometry = new THREE.BoxGeometry(10, 5, 10);
-    //const boxmaterial = new THREE.MeshPhysicalMaterial();
-    //var cage = new THREE.Mesh(geometry, boxmaterial);
-    //cage.position.copy(positions[i]);
-    //scene.add(cage);
-    //cages.push(cage);
-  
-    // Create a spot light
-    //var spotLight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/3, 0.5);
-    //spotLight.position.set(positions[i].x, positions[i].y + 10, positions[i].z);
-    //scene.add(spotLight);
-    //spotLights.push(spotLight);
-  //}
+var animated = function(){
+  uniforms.time.value = clock.getElapsedTime()
+  requestAnimationFrame(animated);
 
-  // Create the hallway spotlights
-//var spotLights = [];
-//var spotLightColors = [0xffffff, 0xffffff, 0xffffff];
-//var spotLightPositions = [
-  //new THREE.Vector3(0, 10, 6.5),
-  
-  //new THREE.Vector3(0, 10, 19.5),
-  
-  //new THREE.Vector3(0, 10, 32.5)
-//];
-//for (var i = 0; i < spotLightPositions.length; i++) {
-  //var spotLight = new THREE.SpotLight(spotLightColors[i]);
-  //spotLight.name = "hallwaySpotlight" + i; // Set the name
-  //spotLight.position.copy(spotLightPositions[i]);
-  //spotLight.target.position.copy(spotLightPositions[i].x, spotLightPositions[i].y - 10, spotLightPositions[i].z);
-  //spotLight.angle = Math.PI/3;
-  //spotLight.penumbra = 0.2;
-  //spotLight.decay = 2;
-  //spotLight.distance = 50;
-  //scene.add(spotLight);
-  //spotLights.push(spotLight);
-//}
+}
+
+animated();
+
 
 //hallway light01
 const halllight01spotlight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI/5, 0.3);
@@ -264,72 +226,7 @@ scene.add(halllight05spotlight.target);
 const halllight05spotlightHelper = new THREE.SpotLightHelper(halllight05spotlight);
 //scene.add(halllight05spotlightHelper);
 
-//hallway light06
-//const halllight06spotlight = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/5, 0.3);
-//halllight06spotlight.position.set(0, 10, 39);
-//halllight06spotlight.target.position.set(0, -0.5, 39);
-//scene.add(halllight06spotlight);
-//scene.add(halllight06spotlight.target);
 
-//const halllight06spotlightHelper = new THREE.SpotLightHelper(halllight06spotlight);
-//scene.add(halllight06spotlightHelper);
-
-  // Create the small box
-  //var smallBoxGeometry = new THREE.BoxGeometry(10, 2, 3);
-  //var smallBox = new THREE.Mesh(smallBoxGeometry, materials[i]);
-  //var smallBoxPosition = new THREE.Vector3(6,1,7);
-  //smallBox.position.copy(smallBoxPosition);
-  //scene.add(smallBox);
-  //smallBoxes.push(smallBox);
-
-  
-  
-  // GUI Controls
- // var guiControls = new function () {
-   // this.spotLightIntensity = 1;
-    //this.spotLightDistance = 100;
-    //this.spotLightAngle = Math.PI/3;
-    //this.spotLightPenumbra = 0.5;
-  //}
-  
-  //var gui = new dat.GUI();
-  //for (var i = 0; i < cages.length; i++) {
-    //var spotLightFolder = gui.addFolder("Spot Light " + i);
-    //spotLightFolder.add(spotLights[i], 'intensity', 0, 2).name('Intensity').onChange(function(value) {
-      //spotLights[i].intensity = value;
-    //});
-    //spotLightFolder.add(spotLights[i], 'distance', 0, 200).name('Distance').onChange(function(value) {
-    //  spotLights[i].distance = value;
-    //});
-    //spotLightFolder.add(guiControls, 'spotLightAngle', 0, Math.PI).name('Angle').onChange(function(value) {
-    //  spotLights[i].angle = value;
-    //});
-    //spotLightFolder.add(guiControls, 'spotLightPenumbra', 0, 1).name('Penumbra').onChange(function(value) {
-    //  spotLights[i].penumbra = value;
-    //});
-    //spotLightFolder.open();
-  //}
-  // Create GUI controls for the spotlights
-
-//var spotLightControls = [];
-//for (var i = 0; i < spotLights.length; i++) {
- // var guiSpotLight = gui.addFolder(`Spot Light ${i+1}`);
- // guiSpotLight.add(spotLights[i], 'intensity', 0, 2);
-  //guiSpotLight.add(spotLights[i], 'distance', 0, 200);
-  //guiSpotLight.add(spotLights[i], 'angle', 0, Math.PI/2);
-  //guiSpotLight.add(spotLights[i], 'penumbra', 0, 1);
-  //if (i >= 4) {
-    //guiSpotLight.close(); // Collapse the GUI folder for spotlights above the small cages
-  //}
-  //spotLightControls.push(guiSpotLight);
-//}
-
-//lighting code
-//lighting 01 = stone spot light
-//lighting 02 = bronse spot light
-//lighting 03 = iron spot light
-//lighting 04 = morden spot light
-//Rock spot light
 
 // Rock lights
 const light01 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
@@ -364,7 +261,7 @@ spotLightFolder01.add(light01, 'penumbra', 0, 1, 0.1)
 spotLightFolder01.add(light01.position, 'x', -50, 50, 1)
 spotLightFolder01.add(light01.position, 'y', -50, 50, 1)
 spotLightFolder01.add(light01.position, 'z', -50, 50, 1)
-spotLightFolder01.open()
+//spotLightFolder01.open()
 
 // bronze lights
 const light02 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
@@ -398,7 +295,7 @@ spotLightFolder02.add(light02, 'penumbra', 0, 1, 0.1)
 spotLightFolder02.add(light02.position, 'x', -50, 50, 1)
 spotLightFolder02.add(light02.position, 'y', -50, 50, 1)
 spotLightFolder02.add(light02.position, 'z', -50, 50, 1)
-spotLightFolder02.open()
+//spotLightFolder02.open()
 
 // iron lights
 const light03 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
@@ -432,7 +329,7 @@ spotLightFolder03.add(light03, 'penumbra', 0, 1, 0.1)
 spotLightFolder03.add(light03.position, 'x', -50, 50, 1)
 spotLightFolder03.add(light03.position, 'y', -50, 50, 1)
 spotLightFolder03.add(light03.position, 'z', -50, 50, 1)
-spotLightFolder03.open()
+//spotLightFolder03.open()
 
 // morden lights
 const light04 = new THREE.SpotLight(0xffffff, 1, 100, Math.PI/9, 0.5, 0)
@@ -466,7 +363,28 @@ spotLightFolder04.add(light04, 'penumbra', 0, 1, 0.1)
 spotLightFolder04.add(light04.position, 'x', -50, 50, 1)
 spotLightFolder04.add(light04.position, 'y', -50, 50, 1)
 spotLightFolder04.add(light04.position, 'z', -50, 50, 1)
-spotLightFolder04.open()
+
+var color = {
+  light: [245, 138, 0], // initial light color
+  base: [255, 255, 255] // initial base color
+};
+
+var basefolder = gui.addFolder('Base Modification');
+basefolder.add(uniforms.intensity, 'value', 0, 20).name('Light Intensity')
+basefolder.add(uniforms.speed, 'value', 0, 10).name('Light Speed')
+basefolder.add(uniforms.resolution, 'value', 0, 50).name('Resolution')
+basefolder.addColor(color, 'light').name('Light Color').onChange(function(value) {
+    // Update the light color uniform with the new color value
+    uniforms.lightColor.value.setRGB(value[0]/255, value[1]/255, value[2]/255);
+  });
+basefolder.addColor(color, 'base').name('Base Color')
+  .onChange(function(value) {
+    // Update the base color uniform with the new color value
+    uniforms.baseColor.value.setRGB(value[0]/255, value[1]/255, value[2]/255);
+  });
+basefolder.open()
+
+//spotLightFolder04.open()
 
 // Render loop
 //function render() {
@@ -483,6 +401,8 @@ spotLightFolder04.open()
 //renderer.shadowMap.enabled = true
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+
 const guiElement = document.getElementById('your-gui-element-id');
 if (guiElement) {
   console.log(guiElement.id); // Print the id of the GUI element
