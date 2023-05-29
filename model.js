@@ -13,8 +13,8 @@ const stoneModels = {
   Stone_Knief: {
     gltfPath: './models/stone_knife/scene.gltf',
     rotation: { x: 0, y: Math.PI / 8, z: 0 },
-    position: { x: 13, y: 6, z: -44 },
-    scale: { x: 0.25, y: 0.25, z: 0.25 }
+    position: { x: 13, y: 7, z: -44 },
+    scale: { x: 0.15, y: 0.15, z: 0.15 }
   },
   Stone_Bgeometry: {
     mtlPath: './models/stone_bow/uploads_files_1832926_bow.mtl',
@@ -27,7 +27,7 @@ const stoneModels = {
     gltfPath: './models/stone_axe/scene.gltf',
     rotation: { x: Math.PI / 2, y: 0, z: Math.PI / 2 },
     position: { x: 13, y: 8, z: -44 },
-    scale: { x: 0.3, y: 0.3, z: 0.3 }
+    scale: { x: 0.2, y: 0.2, z: 0.2 }
   }
 };
 
