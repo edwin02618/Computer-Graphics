@@ -3,54 +3,54 @@ import { MTLLoader } from './examples/jsm/loaders/MTLLoader.js';
 import { GLTFLoader } from './examples/jsm/loaders/GLTFLoader.js';
 
 const stoneModels = {
-  stoneSgeometry: {
+  Stone_Sgeometry: {
     mtlPath: './models/stone_spear/stone_spear.mtl',
     objPath: './models/stone_spear/stone_spear.obj',
     rotation: { x: 0, y: Math.PI / 2 - 1.1, z: 0 },
     position: { x: 13, y: 6, z: -44 },
     scale: { x: 1, y: 1, z: 1 }
   },
-  stone_knief: {
+  Stone_Knief: {
     gltfPath: './models/stone_knife/scene.gltf',
     rotation: { x: 0, y: Math.PI / 8, z: 0 },
-    position: { x: 13, y: 6, z: -44 },
-    scale: { x: 0.25, y: 0.25, z: 0.25 }
+    position: { x: 13, y: 7, z: -44 },
+    scale: { x: 0.15, y: 0.15, z: 0.15 }
   },
-  stoneBgeometry: {
+  Stone_Bgeometry: {
     mtlPath: './models/stone_bow/uploads_files_1832926_bow.mtl',
     objPath: './models/stone_bow/uploads_files_1832926_bow.obj',
     rotation: { x: 0, y: Math.PI / 2, z: 0 },
     position: { x: 11, y: 3, z: -44 },
     scale: { x: 1.5, y: 1.5, z: 1.5 }
   },
-  stone_axe: {
+  Stone_Axe: {
     gltfPath: './models/stone_axe/scene.gltf',
     rotation: { x: Math.PI / 2, y: 0, z: Math.PI / 2 },
     position: { x: 13, y: 8, z: -44 },
-    scale: { x: 0.3, y: 0.3, z: 0.3 }
+    scale: { x: 0.2, y: 0.2, z: 0.2 }
   }
 };
 
 const bronzeModels = {
-  bronze_dagger: {
+  Bronze_Dagger: {
     gltfPath: './models/bronze_dagger/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2, z: 0 },
     position: { x: 8, y: 8, z: -17 },
     scale: { x: 0.05, y: 0.05, z: 0.05 }
   },
-  bronze_khopesh: {
+  Bronze_Khopesh: {
     gltfPath: './models/bronze_khopesh/scene.gltf',
     rotation: { x: -Math.PI / 1.2 + 0.5, y: 0, z: 0.1 },
     position: { x: 8, y: 8, z: -17 },
     scale: { x: 0.1, y: 0.1, z: 0.1 }
   },
-  bronze_sword: {
+  Bronze_Sword: {
     gltfPath: './models/bronze_sword/scene.gltf',
     rotation: { x: -0.5, y: -Math.PI / 1.3, z: 0 },
     position: { x: 8, y: 7, z: -17 },
     scale: { x: 0.01, y: 0.01, z: 0.01 }
   },
-  bronze_shield: {
+  Bronze_Shield: {
     gltfPath: './models/bronze_shield/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2 - 5, z: 0 },
     position: { x: 8, y: 6, z: -17 },
@@ -59,31 +59,60 @@ const bronzeModels = {
 };
 
 const ironModels = {
-  iron_spear: {
+  Iron_Spear: {
     gltfPath: './models/iron_spear/scene.gltf',
     rotation: { x: -Math.PI / 2, y: 0, z: 0 },
     position: { x: 16, y: 7, z: 6 },
     scale: { x: 0.04, y: 0.04, z: 0.04 }
   },
-  iron_sword: {
+  Iron_Sword: {
     gltfPath: './models/iron_sword/scene.gltf',
     rotation: { x: 0, y: 0, z: -Math.PI / 2 },
     position: { x: 16, y: 5, z: 6 },
     scale: { x: 5, y: 5, z: 5 }
   },
-  iron_axe: {
+  Iron_Axe: {
     gltfPath: './models/iron_axe/scene.gltf',
     rotation: { x: 0, y: -Math.PI / 2, z: 0 },
     position: { x: 16, y: 7, z: 6 },
     scale: { x: 0.01, y: 0.01, z: 0.01 }
   },
-  iron_crossbow: {
+  Iron_Crossbow: {
     gltfPath: './models/iron_crossbow/scene.gltf',
     rotation: { x: -Math.PI / 2 + 2, y: 0, z: 0 },
     position: { x: 16, y: 6, z: 6 },
     scale: { x: 2, y: 2, z: 2 }
   }
 };
+
+const modernModels = {
+  Mosin_Nagant_m91: {
+    gltfPath: './models/modern_mosin_nagant_m91/scene.gltf',
+    rotation: { x: 0.3, y: Math.PI / 2, z: 0 },
+    position: { x: 6, y: 6, z: 31 },
+    scale: { x: 5, y: 5, z: 5 }
+  },
+  Remington: {
+    gltfPath: './models/modern_remington/scene.gltf',
+    rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
+    position: { x: 6, y: 6, z: 31 },
+    scale: { x: 4, y: 4, z: 4 }
+  },
+  Rac_Force_Knife: {
+    gltfPath: './models/modern_tac_force_knife/scene.gltf',
+    rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
+    position: { x: 6, y: 7.5, z: 31 },
+    scale: { x: 2, y: 2, z: 2 }
+  },
+  Tomahawk: {
+    gltfPath: './models/modern_tomahawk/scene.gltf',
+    rotation: { x: 0, y: 0, z: 0 },
+    position: { x: 6, y: 6.5, z: 31 },
+    scale: { x: 0.003, y: 0.003, z: 0.003 }
+  }
+};
+
+
 
 export function addModels(scene) {
   const mtlLoader = new MTLLoader();
@@ -97,35 +126,92 @@ export function addModels(scene) {
   // Stone button
   const stoneButton = document.createElement('button');
   stoneButton.innerText = 'Stone';
+  stoneButton.style.fontSize = '30px';
+  stoneButton.style.marginBottom = '10px';
   container.appendChild(stoneButton);
 
-  // Stone model name
+  // Stone name and year
   const stoneName = document.createElement('span');
   stoneName.className = 'modelName';
   stoneName.style.color = 'white';
+  stoneName.style.fontSize = '20px';
+  stoneName.style.marginBottom = '10px';
   container.appendChild(stoneName);
+
+  const stoneYear = document.createElement('span');
+  stoneYear.className = 'modelYear';
+  stoneYear.style.color = 'white';
+  stoneYear.style.fontSize = '20px';
+  stoneYear.style.marginBottom = '40px';
+  container.appendChild(stoneYear);
 
   // Bronze button
   const bronzeButton = document.createElement('button');
   bronzeButton.innerText = 'Bronze';
+  bronzeButton.style.fontSize = '30px';
+  bronzeButton.style.marginBottom = '10px';
   container.appendChild(bronzeButton);
 
-  // Bronze model name
+  // Bronze name and year
   const bronzeName = document.createElement('span');
   bronzeName.className = 'modelName';
   bronzeName.style.color = 'white';
+  bronzeName.style.fontSize = '20px';
+  bronzeName.style.marginBottom = '10px';
   container.appendChild(bronzeName);
+
+  const bronzeYear = document.createElement('span');
+  bronzeYear.className = 'modelYear';
+  bronzeYear.style.color = 'white';
+  bronzeYear.style.fontSize = '20px';
+  bronzeYear.style.marginBottom = '40px';
+  container.appendChild(bronzeYear);
 
   // Iron button
   const ironButton = document.createElement('button');
   ironButton.innerText = 'Iron';
+  ironButton.style.marginRight = '10px';
+  ironButton.style.fontSize = '30px';
+  ironButton.style.marginBottom = '10px';
   container.appendChild(ironButton);
 
-  // Iron model name
+  // Iron name and year
   const ironName = document.createElement('span');
   ironName.className = 'modelName';
   ironName.style.color = 'white';
+  ironName.style.fontSize = '20px';
+  ironName.style.marginBottom = '10px';
   container.appendChild(ironName);
+
+  const ironYear = document.createElement('span');
+  ironYear.className = 'modelYear';
+  ironYear.style.color = 'white';
+  ironYear.style.fontSize = '20px';
+  ironYear.style.marginBottom = '40px';
+  container.appendChild(ironYear);
+
+  // Modern button
+  const modernButton = document.createElement('button');
+  modernButton.innerText = 'Modern';
+  modernButton.style.fontSize = '30px';
+  modernButton.style.marginBottom = '10px';
+  container.appendChild(modernButton);
+
+  // Modern name and year
+  const modernName = document.createElement('span');
+  modernName.className = 'modelName';
+  modernName.style.color = 'white';
+  modernName.style.fontSize = '20px';
+  modernName.style.marginBottom = '10px';
+  container.appendChild(modernName);
+
+  const modernYear = document.createElement('span');
+  modernYear.className = 'modelYear';
+  modernYear.style.color = 'white';
+  modernYear.style.fontSize = '20px';
+  modernYear.style.marginBottom = '40px';
+  container.appendChild(modernYear);
+
 
   // Model index variables
   let stoneModelIndex = 0;
@@ -136,6 +222,9 @@ export function addModels(scene) {
 
   let ironModelIndex = 0;
   const ironModelsArray = Object.keys(ironModels);
+
+  let modernModelIndex = 0;
+  const modernModelsArray = Object.keys(modernModels);
 
   // Stone button event listener
   stoneButton.addEventListener('click', () => {
@@ -161,35 +250,48 @@ export function addModels(scene) {
     ironModelIndex = (ironModelIndex + 1) % ironModelsArray.length;
   });
 
+  // Modern button event listener
+  modernButton.addEventListener('click', () => {
+    const model = modernModelsArray[modernModelIndex];
+    loadModel(modernModels[model], 'modernModel');
+    modernName.innerText = model;
+    modernModelIndex = (modernModelIndex + 1) % modernModelsArray.length;
+  });
+
   // Set CSS styles for the container
   container.style.position = 'absolute';
   container.style.top = '10px';
   container.style.left = '10px';
+  container.style.display = 'flex';
+  container.style.flexDirection = 'column';
 
-  // Display initial models
+  // Load the initial stone model
   const initialStoneModel = stoneModelsArray[stoneModelIndex];
   loadModel(stoneModels[initialStoneModel], 'stoneModel');
   stoneName.innerText = initialStoneModel;
+  stoneYear.innerText = 'StartingYear:3300BCE';
   stoneModelIndex = (stoneModelIndex + 1) % stoneModelsArray.length;
 
+  // Load the initial bronze model
   const initialBronzeModel = bronzeModelsArray[bronzeModelIndex];
   loadModel(bronzeModels[initialBronzeModel], 'bronzeModel');
   bronzeName.innerText = initialBronzeModel;
+  bronzeYear.innerText = 'Starting ear:1200BC ';
   bronzeModelIndex = (bronzeModelIndex + 1) % bronzeModelsArray.length;
 
+  // Load the initial iron model
   const initialIronModel = ironModelsArray[ironModelIndex];
   loadModel(ironModels[initialIronModel], 'ironModel');
   ironName.innerText = initialIronModel;
+  ironYear.innerText = 'StartingYear:600BC ';
   ironModelIndex = (ironModelIndex + 1) % ironModelsArray.length;
 
-  // Load the "modern_mosin_nagant_m91" model
-  gltfLoader.load('./models/modern_mosin_nagant_m91/scene.gltf', (m91) => {
-    m91.scene.rotation.y = Math.PI / 2;
-    m91.scene.rotation.x = 0.3;
-    m91.scene.scale.set(6, 6, 6);
-    m91.scene.position.set(6, 6, 31);
-    scene.add(m91.scene);
-  });
+  // Load the initial modern model
+  const initialModernModel = modernModelsArray[modernModelIndex];
+  loadModel(modernModels[initialModernModel], 'modernModel');
+  modernName.innerText = initialModernModel;
+  modernYear.innerText = 'StartingYear:1364 ';
+  modernModelIndex = (modernModelIndex + 1) % modernModelsArray.length;
 
   function loadModel(modelData, modelName) {
     // Remove existing models of the same category
@@ -222,3 +324,4 @@ export function addModels(scene) {
     }
   }
 }
+

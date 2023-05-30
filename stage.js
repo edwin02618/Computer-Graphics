@@ -1,9 +1,8 @@
 import * as THREE from 'three';
-import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import backgroundfShader from './shader/backgroundfshader.glsl.js';
 import backgroundvShader from './shader/backgroundvshader.glsl.js';
 import {PointerLockControls} from './examples/jsm/controls/PointerLockControls.js';
-import { wallGroup } from './cage and lighting.js';
+import { initializeCageLighting, wallGroup, } from './cage and lighting.js';
 
 //create the scene
 //var scene = new THREE.Scene( );
@@ -77,14 +76,9 @@ const direction = new THREE.Vector3();
 
 const loader = new THREE.TextureLoader();
 
-const backgroundtexture = loader.load('img/background.jpg');
 
-backgroundtexture.wrapS = THREE.RepeatWrapping;
-backgroundtexture.wrapT = THREE.RepeatWrapping;
-backgroundtexture.repeat = new THREE.Vector2(60,1)
 const backgroundGeometry = new THREE.SphereGeometry( 100, 32,32);
 backgroundGeometry.thetaLength = 1
-const backgroundmaterial = new THREE.MeshBasicMaterial( {map: backgroundtexture } );
 const backgroundsphere = new THREE.Mesh( backgroundGeometry, backshaderMaterial );
 backgroundsphere.material.side = THREE.BackSide;
 backgroundsphere.rotation.y =  - Math.PI / 2 +0.05;
@@ -292,9 +286,11 @@ function update(){
 
   prevTime = time;
 
+
   renderer.render( scene, camera );
 
   uniforms.time.value = clock.getElapsedTime()
+
 }
 
 let previousMouseX = 0;
