@@ -1,0 +1,11 @@
+Model Information:
+* title:	Khopesh
+* source:	https://sketchfab.com/3d-models/khopesh-35690db24b904650a1da65f9dc68752e
+* author:	Mega_Jimjims (https://sketchfab.com/JimKalcich)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Khopesh" (https://sketchfab.com/3d-models/khopesh-35690db24b904650a1da65f9dc68752e) by Mega_Jimjims (https://sketchfab.com/JimKalcich) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

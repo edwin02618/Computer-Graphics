@@ -1,0 +1,32 @@
+# Blender MTL File: 'bow.blend'
+# Material Count: 2
+
+newmtl bow
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump bow_Normal.png
+map_Kd bow_Base_Color.png
+map_Ks bow_Height.png
+map_Ns bow_Roughness.png
+refl bow_Metallic.png
+
+newmtl leather_part
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump leather part_Normal.png
+map_Kd leather part_Base_Color.png
+map_Ks leather part_Height.png
+map_Ns leather part_Roughness.png
+refl leather part_Metallic.png
