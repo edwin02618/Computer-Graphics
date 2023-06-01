@@ -1,29 +1,32 @@
 import { OBJLoader } from './examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from './examples/jsm/loaders/MTLLoader.js';
 import { GLTFLoader } from './examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from 'three';
+      import {GUI} from '//cdn.skypack.dev/three@0.131.1/examples/jsm/libs/dat.gui.module.js'
+
 
 const stoneModels = {
-  Stone_Sgeometry: {
+  'Stone Spear': {
     mtlPath: './models/stone_spear/stone_spear.mtl',
     objPath: './models/stone_spear/stone_spear.obj',
     rotation: { x: 0, y: Math.PI / 2 - 1.1, z: 0 },
     position: { x: 13, y: 6, z: -44 },
     scale: { x: 1, y: 1, z: 1 }
   },
-  Stone_Knief: {
+  'Stone Knife': {
     gltfPath: './models/stone_knife/scene.gltf',
     rotation: { x: 0, y: Math.PI / 8, z: 0 },
     position: { x: 13, y: 7, z: -44 },
     scale: { x: 0.15, y: 0.15, z: 0.15 }
   },
-  Stone_Bgeometry: {
+  'Stone Bow': {
     mtlPath: './models/stone_bow/uploads_files_1832926_bow.mtl',
     objPath: './models/stone_bow/uploads_files_1832926_bow.obj',
     rotation: { x: 0, y: Math.PI / 2, z: 0 },
     position: { x: 11, y: 3, z: -44 },
     scale: { x: 1.5, y: 1.5, z: 1.5 }
   },
-  Stone_Axe: {
+  'Stone Axe': {
     gltfPath: './models/stone_axe/scene.gltf',
     rotation: { x: Math.PI / 2, y: 0, z: Math.PI / 2 },
     position: { x: 13, y: 8, z: -44 },
@@ -32,25 +35,25 @@ const stoneModels = {
 };
 
 const bronzeModels = {
-  Bronze_Dagger: {
+  'Bronze Dagger': {
     gltfPath: './models/bronze_dagger/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2, z: 0 },
     position: { x: 8, y: 8, z: -17 },
     scale: { x: 0.05, y: 0.05, z: 0.05 }
   },
-  Bronze_Khopesh: {
+  'Bronze Khopesh': {
     gltfPath: './models/bronze_khopesh/scene.gltf',
     rotation: { x: -Math.PI / 1.2 + 0.5, y: 0, z: 0.1 },
     position: { x: 8, y: 8, z: -17 },
     scale: { x: 0.1, y: 0.1, z: 0.1 }
   },
-  Bronze_Sword: {
+  'Bronze Sword': {
     gltfPath: './models/bronze_sword/scene.gltf',
     rotation: { x: -0.5, y: -Math.PI / 1.3, z: 0 },
     position: { x: 8, y: 7, z: -17 },
     scale: { x: 0.01, y: 0.01, z: 0.01 }
   },
-  Bronze_Shield: {
+  'Bronze Shield': {
     gltfPath: './models/bronze_shield/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2 - 5, z: 0 },
     position: { x: 8, y: 6, z: -17 },
@@ -59,25 +62,25 @@ const bronzeModels = {
 };
 
 const ironModels = {
-  Iron_Spear: {
+  'Iron Spear': {
     gltfPath: './models/iron_spear/scene.gltf',
     rotation: { x: -Math.PI / 2, y: 0, z: 0 },
     position: { x: 16, y: 7, z: 6 },
     scale: { x: 0.04, y: 0.04, z: 0.04 }
   },
-  Iron_Sword: {
+  'Iron Sword': {
     gltfPath: './models/iron_sword/scene.gltf',
     rotation: { x: 0, y: 0, z: -Math.PI / 2 },
     position: { x: 16, y: 5, z: 6 },
     scale: { x: 5, y: 5, z: 5 }
   },
-  Iron_Axe: {
+  'Iron Axe': {
     gltfPath: './models/iron_axe/scene.gltf',
     rotation: { x: 0, y: -Math.PI / 2, z: 0 },
     position: { x: 16, y: 7, z: 6 },
     scale: { x: 0.01, y: 0.01, z: 0.01 }
   },
-  Iron_Crossbow: {
+  'Iron Crossbow': {
     gltfPath: './models/iron_crossbow/scene.gltf',
     rotation: { x: -Math.PI / 2 + 2, y: 0, z: 0 },
     position: { x: 16, y: 6, z: 6 },
@@ -86,25 +89,25 @@ const ironModels = {
 };
 
 const modernModels = {
-  Mosin_Nagant_m91: {
+  'Mosin Nagant': {
     gltfPath: './models/modern_mosin_nagant_m91/scene.gltf',
     rotation: { x: 0.3, y: Math.PI / 2, z: 0 },
     position: { x: 6, y: 6, z: 31 },
     scale: { x: 5, y: 5, z: 5 }
   },
-  Remington: {
+  'Remington': {
     gltfPath: './models/modern_remington/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
     position: { x: 6, y: 6, z: 31 },
     scale: { x: 4, y: 4, z: 4 }
   },
-  Rac_Force_Knife: {
+  'Tac-Force Knife': {
     gltfPath: './models/modern_tac_force_knife/scene.gltf',
     rotation: { x: 0, y: Math.PI / 2 + 2, z: 0 },
     position: { x: 6, y: 7.5, z: 31 },
     scale: { x: 2, y: 2, z: 2 }
   },
-  Tomahawk: {
+  'Tomahawk': {
     gltfPath: './models/modern_tomahawk/scene.gltf',
     rotation: { x: 0, y: 0, z: 0 },
     position: { x: 6, y: 6.5, z: 31 },
@@ -269,28 +272,28 @@ export function addModels(scene) {
   const initialStoneModel = stoneModelsArray[stoneModelIndex];
   loadModel(stoneModels[initialStoneModel], 'stoneModel');
   stoneName.innerText = initialStoneModel;
-  stoneYear.innerText = 'StartingYear:3300BCE';
+  stoneYear.innerText = 'Starting Year: 3300BCE';
   stoneModelIndex = (stoneModelIndex + 1) % stoneModelsArray.length;
 
   // Load the initial bronze model
   const initialBronzeModel = bronzeModelsArray[bronzeModelIndex];
   loadModel(bronzeModels[initialBronzeModel], 'bronzeModel');
   bronzeName.innerText = initialBronzeModel;
-  bronzeYear.innerText = 'Starting ear:1200BC ';
+  bronzeYear.innerText = 'Starting Year: 1200BC';
   bronzeModelIndex = (bronzeModelIndex + 1) % bronzeModelsArray.length;
 
   // Load the initial iron model
   const initialIronModel = ironModelsArray[ironModelIndex];
   loadModel(ironModels[initialIronModel], 'ironModel');
   ironName.innerText = initialIronModel;
-  ironYear.innerText = 'StartingYear:600BC ';
+  ironYear.innerText = 'Starting Year: 600BC';
   ironModelIndex = (ironModelIndex + 1) % ironModelsArray.length;
 
   // Load the initial modern model
   const initialModernModel = modernModelsArray[modernModelIndex];
   loadModel(modernModels[initialModernModel], 'modernModel');
   modernName.innerText = initialModernModel;
-  modernYear.innerText = 'StartingYear:1364 ';
+  modernYear.innerText = 'Starting Year: 1364';
   modernModelIndex = (modernModelIndex + 1) % modernModelsArray.length;
 
   function loadModel(modelData, modelName) {
@@ -306,6 +309,7 @@ export function addModels(scene) {
         model.rotation.set(modelData.rotation.x, modelData.rotation.y, modelData.rotation.z);
         model.scale.set(modelData.scale.x, modelData.scale.y, modelData.scale.z);
         scene.add(model);
+
       });
     } else {
       mtlLoader.load(modelData.mtlPath, (materials) => {
@@ -318,10 +322,99 @@ export function addModels(scene) {
           model.position.copy(modelData.position);
           model.rotation.set(modelData.rotation.x, modelData.rotation.y, modelData.rotation.z);
           model.scale.set(modelData.scale.x, modelData.scale.y, modelData.scale.z);
+          loadRotation(modelData, modelName);
           scene.add(model);
         });
       });
     }
+    
   }
+   // Add rotation variables for each model
+const stoneRotation = { x: 0, y: Math.PI / 2 - 1.1, z: 0 };
+const bronzeRotation = { x: 0, y: Math.PI / 2, z: 0 };
+const ironRotation = { x: -Math.PI / 2, y: 0, z: 0 };
+const modernRotation = { x: 0.3, y: Math.PI / 2, z: 0 };
+
+// Create GUI for rotation controls
+const gui1 = new GUI();
+const container1 = document.createElement('div');
+container1.style.position = 'fixed';
+container1.style.bottom = '20px';
+container1.style.left = '20px';
+
+
+// Append the GUI dom element to the container
+container1.appendChild(gui1.domElement);
+
+// Append the container to the document body
+document.body.appendChild(container1);
+
+
+const stoneFolder = gui1.addFolder('Stone');
+stoneFolder.add(stoneRotation, 'x', 0, Math.PI * 2, 0.1).name('Rotation X');
+stoneFolder.add(stoneRotation, 'y', 0, Math.PI * 2, 0.1).name('Rotation Y');
+stoneFolder.add(stoneRotation, 'z', 0, Math.PI * 2, 0.1).name('Rotation Z');
+
+const bronzeFolder = gui1.addFolder('Bronze');
+bronzeFolder.add(bronzeRotation, 'x', 0, Math.PI * 2, 0.1).name('Rotation X');
+bronzeFolder.add(bronzeRotation, 'y', 0, Math.PI * 2, 0.1).name('Rotation Y');
+bronzeFolder.add(bronzeRotation, 'z', 0, Math.PI * 2, 0.1).name('Rotation Z');
+
+const ironFolder = gui1.addFolder('Iron');
+ironFolder.add(ironRotation, 'x', 0, Math.PI * 2, 0.1).name('Rotation X');
+ironFolder.add(ironRotation, 'y', 0, Math.PI * 2, 0.1).name('Rotation Y');
+ironFolder.add(ironRotation, 'z', 0, Math.PI * 2, 0.1).name('Rotation Z');
+
+const modernFolder = gui1.addFolder('Modern');
+modernFolder.add(modernRotation, 'x', 0, Math.PI * 2, 0.1).name('Rotation X');
+modernFolder.add(modernRotation, 'y', 0, Math.PI * 2, 0.1).name('Rotation Y');
+modernFolder.add(modernRotation, 'z', 0, Math.PI * 2, 0.1).name('Rotation Z');
+function loadRotation(modelData, modelName) {
+  
+  console.log(modelData)
+  if (modelData.gltfPath && stoneModels.includes(modelName)) {
+    
+    gltfLoader.load(modelData.gltfPath, (gltf) => {
+      model.rotation.set(
+        modelData.rotation.x + stoneRotation.x,
+        modelData.rotation.y + stoneRotation.y,
+        modelData.rotation.z + stoneRotation.z
+      );
+      
+    });
+  }
+  else if (modelData.gltfPath && bronzeModels.includes(modelName)) {
+    gltfLoader.load(modelData.gltfPath, (gltf) => {
+      model.rotation.set(
+        modelData.rotation.x + bronzeRotation.x,
+        modelData.rotation.y + bronzeRotation.y,
+        modelData.rotation.z + bronzeRotation.z
+      );
+    });
+  }
+  else if (modelData.gltfPath && ironModels.includes(modelName)) {
+    gltfLoader.load(modelData.gltfPath, (gltf) => {
+      model.rotation.set(
+        modelData.rotation.x + ironRotation.x,
+        modelData.rotation.y + ironRotation.y,
+        modelData.rotation.z + ironRotation.z
+      );
+});
+}
+else if (modelData.gltfPath && modernModels.includes(modelName)) {
+  gltfLoader.load(modelData.gltfPath, (gltf) => {
+    model.rotation.set(
+      modelData.rotation.x + modernRotation.x,
+      modelData.rotation.y + modernRotation.y,
+      modelData.rotation.z + modernRotation.z
+    );
+});
+}
+}
+var animation = function(){
+  requestAnimationFrame(animation);
+
 }
 
+animation();
+}
